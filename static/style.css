@@ -449,3 +449,16 @@ tbody tr:last-child > * { border-bottom: 0; }
 /* 묶음 안 카드는 한 줄을 꽉 채운다 (묶음당 3~4편) */
 .grp .mag { grid-template-columns: repeat(auto-fit, minmax(230px, 1fr)); }
 @media (max-width: 720px) { .grp .mag { grid-template-columns: 1fr; } }
+
+/* OX 6개: 3×2로 계산기 높이에 맞춤 */
+.ox { align-content: start; }
+.oxc { height: 202px; }
+.oxc .front b { font-size: 1.05rem; }
+@media (max-width: 720px) {
+  .ox { grid-template-columns: 1fr 1fr; gap: 10px; }
+  .oxc { height: 190px; }
+  .oxc .face { padding: 16px; }
+  .oxc .front b { font-size: .98rem; }
+  .oxc .ans { font-size: 2.6rem; }
+  .oxc .exp { font-size: .82rem; }
+}
