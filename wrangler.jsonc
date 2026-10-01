@@ -1,0 +1,19 @@
+{
+  "$schema": "node_modules/wrangler/config-schema.json",
+  "name": "swimguide",
+  "main": "src/worker.js",
+  "compatibility_date": "2026-09-01",
+  // 도메인 이전 후에는 기존 workers.dev 주소를 살려둬야 301 리다이렉트가 동작한다 (최소 6~12개월 유지)
+  "workers_dev": true,
+  "assets": {
+    "directory": "./dist",
+    "binding": "ASSETS",
+    "not_found_handling": "404-page",
+    "html_handling": "force-trailing-slash",
+    "run_worker_first": true
+  },
+  "vars": {
+    // 도메인 구매 후 "swimguide.kr" 처럼 호스트만 입력하면, 다른 호스트로 온 요청은 전부 여기로 301
+    "CANONICAL_HOST": ""
+  }
+}

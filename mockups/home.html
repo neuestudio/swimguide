@@ -1,0 +1,649 @@
+<!doctype html>
+<html lang="ko">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>메인 시안 — 수영 영법 가이드</title>
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/orioncactus/pretendard@v1.3.9/dist/web/static/pretendard.min.css">
+<link rel="stylesheet" href="https://hangeul.pstatic.net/hangeul_static/css/maru-buri.css">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Instrument+Serif:ital@0;1&display=swap">
+<style>
+:root {
+  --cream: #F7F4EA;
+  --paper: #FFFDF6;
+  --ink: #16213A;
+  --ink-soft: #4A5670;
+  --line: rgba(22, 33, 58, .14);
+  --pool: #BFD6EC;
+  --pool-deep: #8AB0DF;
+  --lemon: #F2E6A7;
+  --lime: #D9F26B;
+  --tomato: #D63A20;
+  --sage: #D1E1D4;
+  --rose: #F3C6BE;
+  --serif: "MaruBuri", "Instrument Serif", serif;
+  --latin: "Instrument Serif", "MaruBuri", serif;
+  --sans: "Pretendard", -apple-system, BlinkMacSystemFont, "Apple SD Gothic Neo", sans-serif;
+  --r: 22px;
+  --max: 1120px;
+}
+* { box-sizing: border-box; }
+html { scroll-behavior: smooth; }
+body { margin: 0; background: var(--cream); color: var(--ink); font-family: var(--sans); line-height: 1.7; word-break: keep-all; overflow-x: hidden; }
+a { color: inherit; }
+.wrap { max-width: var(--max); margin: 0 auto; padding: 0 20px; }
+button { font: inherit; color: inherit; cursor: pointer; }
+
+/* ---------- Header ---------- */
+.hd { position: sticky; top: 0; z-index: 20; background: color-mix(in srgb, var(--cream) 85%, transparent); backdrop-filter: blur(10px); }
+.hd .wrap { display: flex; align-items: center; gap: 16px; height: 68px; }
+.logo { display: flex; align-items: center; gap: 8px; font-family: var(--serif); font-weight: 700; font-size: 1.15rem; text-decoration: none; white-space: nowrap; }
+.logo svg { width: 30px; height: 30px; }
+.nav { display: flex; gap: 4px; margin: 0 auto; }
+.nav a { padding: 8px 14px; border-radius: 999px; text-decoration: none; font-size: .95rem; font-weight: 500; }
+.nav a:hover { background: var(--paper); }
+.hd-right { display: flex; gap: 8px; align-items: center; }
+.pill { display: inline-flex; align-items: center; gap: 6px; padding: 8px 14px; border-radius: 999px; border: 1.5px solid var(--ink); text-decoration: none; font-size: .88rem; font-weight: 600; background: transparent; }
+.pill.lime { background: var(--lime); border-color: transparent; box-shadow: inset 0 0 0 1.5px rgba(22,33,58,.12); }
+.pill.ghost { border-color: var(--line); font-weight: 500; }
+
+/* ---------- Hero ---------- */
+.hero { position: relative; padding-block: 72px 96px; text-align: center; }
+.hero .kicker { font-size: .82rem; letter-spacing: .14em; color: var(--ink-soft); text-transform: uppercase; }
+.hero h1 { font-family: var(--serif); font-weight: 300; font-size: clamp(2.6rem, 7.2vw, 5.4rem); line-height: 1.12; letter-spacing: -.02em; margin: 14px 0 20px; }
+.hero h1 em { font-style: normal; position: relative; white-space: nowrap; }
+.hero h1 em::before { content: ""; position: absolute; left: -4px; right: -4px; bottom: .08em; height: .42em; background: var(--lime); z-index: -1; border-radius: 4px; transform: rotate(-1deg); }
+.hero h1 .latin { font-family: var(--latin); font-style: italic; }
+.hero p.sub { max-width: 30em; margin: 0 auto; color: var(--ink-soft); font-size: 1.08rem; }
+.hero .ctas { display: flex; gap: 10px; justify-content: center; flex-wrap: wrap; margin-top: 28px; }
+.btn { display: inline-flex; align-items: center; gap: 8px; padding: 14px 22px; border-radius: 999px; font-weight: 600; text-decoration: none; border: 0; }
+.btn.ink { background: var(--ink); color: var(--cream); }
+.btn.line { box-shadow: inset 0 0 0 1.5px var(--ink); }
+
+.mascot { width: 260px; margin: 28px auto 0; display: block; }
+
+.float { position: absolute; background: var(--paper); border-radius: 18px; padding: 14px 16px; text-align: left; box-shadow: 0 10px 30px -12px rgba(22,33,58,.25); font-size: .88rem; width: 230px; }
+.float .tag { display: inline-block; font-size: .68rem; font-weight: 700; letter-spacing: .08em; text-transform: uppercase; color: var(--ink-soft); margin-bottom: 4px; }
+.float b { font-family: var(--serif); font-size: 1.02rem; display: block; line-height: 1.4; }
+.f-tip { left: 0; top: 70px; transform: rotate(-5deg); background: var(--lemon); }
+.f-pace { right: 0; top: 40px; transform: rotate(4deg); }
+.f-pace .big { font-family: var(--latin); font-size: 2.2rem; line-height: 1; }
+.f-ox { left: 30px; bottom: 30px; transform: rotate(3deg); background: var(--pool); width: 210px; }
+.f-sticker { right: 40px; bottom: 50px; transform: rotate(-6deg); background: var(--sage); width: 190px; display: flex; gap: 10px; align-items: center; }
+.f-sticker svg { width: 56px; flex: none; }
+.float { animation: bob 6s ease-in-out infinite; }
+.f-pace { animation-delay: -1.5s; } .f-ox { animation-delay: -3s; } .f-sticker { animation-delay: -4.5s; }
+@keyframes bob { 50% { translate: 0 -8px; } }
+
+/* ---------- Section heads ---------- */
+.sec { padding-top: 88px; }
+[hidden] { display: none !important; }
+.sec-head { display: flex; align-items: flex-end; justify-content: space-between; gap: 24px; margin-bottom: 32px; flex-wrap: wrap; }
+.sec-head h2 { font-family: var(--serif); font-weight: 300; font-size: clamp(2rem, 4.6vw, 3.2rem); line-height: 1.15; margin: 0; letter-spacing: -.01em; display: flex; align-items: baseline; gap: 14px; }
+.sec-head h2 .no { font-family: var(--sans); font-size: .9rem; font-weight: 600; color: var(--ink-soft); }
+.sec-head p { max-width: 24em; margin: 0; color: var(--ink-soft); }
+
+/* ---------- 01 Strokes ---------- */
+.strokes { display: grid; grid-auto-flow: column; grid-auto-columns: minmax(260px, 1fr); gap: 16px; overflow-x: auto; scroll-snap-type: x mandatory; padding-bottom: 12px; scrollbar-width: none; }
+.strokes::-webkit-scrollbar { display: none; }
+.sc { scroll-snap-align: start; background: var(--paper); border-radius: var(--r); padding: 12px; text-decoration: none; display: flex; flex-direction: column; transition: transform .2s; }
+.sc:hover { transform: translateY(-4px); }
+.sc .art { border-radius: 16px; aspect-ratio: 4 / 3; display: grid; place-items: center; overflow: hidden; }
+.sc .art svg { width: 100%; height: 100%; }
+.sc .meta { padding: 16px 8px 8px; }
+.sc .row { display: flex; justify-content: space-between; align-items: center; gap: 8px; }
+.sc h3 { font-family: var(--serif); font-weight: 400; font-size: 1.6rem; margin: 0; }
+.sc .chip { font-size: .72rem; font-weight: 600; padding: 3px 10px; border-radius: 999px; background: var(--cream); white-space: nowrap; }
+.sc p { margin: 6px 0 0; color: var(--ink-soft); font-size: .92rem; }
+.sc .go { margin-top: 12px; font-size: .85rem; font-weight: 600; }
+
+/* 선화 캐릭터 공통 */
+.sw { fill: none; stroke: var(--ink); stroke-width: 3; stroke-linecap: round; stroke-linejoin: round; }
+.sw .fillink { fill: var(--ink); stroke: none; }
+.sw .skin { fill: var(--paper); }
+.sw .water { fill: rgba(255,255,255,.45); stroke: none; }
+.sw .wave { stroke-width: 2.5; }
+.sw .arm, .sw .kick, .sw .bodyroll, .sw .waves, .sw .frogarm, .sw .frogleg, .sw .bubble { animation-play-state: paused; }
+.sc:hover .sw *, .sc:focus-visible .sw *, .quiz-result .sw *, .mascot * { animation-play-state: running !important; }
+@media (hover: none) { .sw * { animation-play-state: running !important; } }
+.arm { animation: windmill 2.2s linear infinite; animation-delay: -.3s; }
+.arm.b { animation-delay: -1.4s; }
+.fly .arm, .fly .arm.b { animation-delay: -.45s; }
+.kick { animation: kick .55s ease-in-out infinite alternate; }
+.kick.b { animation-delay: -.55s; }
+.waves { animation: drift 2.4s linear infinite; }
+.bodyroll { animation: undulate 2.2s ease-in-out infinite; }
+.frogarm { animation: sweep 1.8s ease-in-out infinite; }
+.frogarm.b { animation-name: sweepB; }
+.frogleg { animation: frogkick 1.8s ease-in-out infinite; }
+.frogleg.b { animation-name: frogkickB; }
+.headbob { animation: headbob 1.8s ease-in-out infinite; animation-play-state: paused; }
+.sc:hover .headbob { animation-play-state: running; }
+@keyframes windmill { to { transform: rotate(360deg); } }
+@keyframes kick { from { transform: rotate(-9deg); } to { transform: rotate(9deg); } }
+@keyframes drift { to { transform: translateX(-50px); } }
+@keyframes undulate { 0%, 100% { transform: translateY(0) rotate(0); } 50% { transform: translateY(6px) rotate(-4deg); } }
+@keyframes sweep { 0%, 100% { transform: rotate(0); } 40% { transform: rotate(-55deg); } 60% { transform: rotate(-10deg); } }
+@keyframes sweepB { 0%, 100% { transform: rotate(0); } 40% { transform: rotate(55deg); } 60% { transform: rotate(10deg); } }
+@keyframes frogkick { 0%, 30%, 100% { transform: rotate(0); } 55% { transform: rotate(-35deg); } }
+@keyframes frogkickB { 0%, 30%, 100% { transform: rotate(0); } 55% { transform: rotate(35deg); } }
+@keyframes headbob { 0%, 100% { transform: translateY(6px); } 40% { transform: translateY(-4px); } }
+@keyframes rise { from { transform: translateY(0); opacity: 1; } to { transform: translateY(-40px); opacity: 0; } }
+.bubble { animation: rise 2.6s ease-in infinite; }
+.bubble.b { animation-delay: -.9s; } .bubble.c { animation-delay: -1.7s; }
+@media (prefers-reduced-motion: reduce) { *, *::before { animation: none !important; } }
+
+/* ---------- 02 Quiz ---------- */
+.quiz { display: grid; grid-template-columns: 1.1fr 1fr; gap: 16px; }
+.quiz-box, .quiz-result { background: var(--paper); border-radius: var(--r); padding: 32px; }
+.quiz-box .progress { display: flex; gap: 6px; margin-bottom: 24px; }
+.quiz-box .progress i { height: 6px; flex: 1; border-radius: 3px; background: var(--cream); }
+.quiz-box .progress i.on { background: var(--ink); }
+.quiz-box .q { font-family: var(--serif); font-size: 1.55rem; line-height: 1.35; margin: 0 0 20px; }
+.opts { display: grid; gap: 10px; }
+.opt { text-align: left; padding: 14px 18px; border-radius: 14px; border: 1.5px solid var(--line); background: transparent; font-size: 1rem; transition: background .15s, border-color .15s; }
+.opt:hover { background: var(--lemon); border-color: transparent; }
+.quiz-result { background: var(--pool); display: flex; flex-direction: column; justify-content: center; text-align: center; }
+.quiz-result .art { width: 220px; margin: 0 auto; }
+.quiz-result .label { font-size: .8rem; font-weight: 700; letter-spacing: .1em; color: var(--ink-soft); }
+.quiz-result h3 { font-family: var(--serif); font-weight: 400; font-size: 2.2rem; margin: 4px 0 8px; }
+.quiz-result p { margin: 0 auto 16px; max-width: 22em; color: var(--ink-soft); }
+.quiz-result .acts { display: flex; gap: 8px; justify-content: center; flex-wrap: wrap; }
+
+/* ---------- 03 Lane roadmap ---------- */
+.lane { position: relative; background: var(--pool); border-radius: var(--r); padding: 36px 28px 28px; overflow: hidden; }
+.lane::before { content: ""; position: absolute; inset: 0; background: repeating-linear-gradient(90deg, transparent 0 calc(20% - 1px), rgba(255,255,255,.55) calc(20% - 1px) 20%); pointer-events: none; }
+.lane-rope { position: absolute; left: 0; right: 0; top: 98px; height: 10px; background: repeating-linear-gradient(90deg, var(--tomato) 0 14px, var(--paper) 14px 28px); opacity: .7; }
+.lane ol { position: relative; list-style: none; margin: 0; padding: 0; display: grid; grid-template-columns: repeat(5, 1fr); gap: 12px; }
+.lane li { display: flex; flex-direction: column; gap: 10px; }
+.lane .dist { font-family: var(--latin); font-size: 2.6rem; line-height: 1; }
+.lane .dist small { font-size: 1rem; }
+.lane a.stop { display: block; margin-top: 34px; background: var(--paper); border-radius: 16px; padding: 14px; text-decoration: none; font-size: .9rem; transition: transform .2s; }
+.lane a.stop:hover { transform: translateY(-3px); }
+.lane a.stop b { display: block; font-family: var(--serif); font-size: 1.05rem; }
+.lane a.stop span { color: var(--ink-soft); }
+
+/* ---------- 04 OX + 05 calc ---------- */
+.duo { display: grid; grid-template-columns: 1.4fr 1fr; gap: 16px; }
+.ox { display: grid; grid-template-columns: repeat(3, 1fr); gap: 12px; }
+.oxc { perspective: 900px; height: 260px; border: 0; padding: 0; background: none; text-align: left; }
+.oxc .in { position: relative; width: 100%; height: 100%; transition: transform .6s; transform-style: preserve-3d; }
+.oxc.flip .in { transform: rotateY(180deg); }
+.oxc .face { position: absolute; inset: 0; backface-visibility: hidden; border-radius: var(--r); padding: 20px; display: flex; flex-direction: column; justify-content: space-between; }
+.oxc .front { background: var(--paper); }
+.oxc .back { background: var(--ink); color: var(--cream); transform: rotateY(180deg); }
+.oxc .front b { font-family: var(--serif); font-size: 1.15rem; line-height: 1.45; font-weight: 400; }
+.oxc .hint { font-size: .8rem; color: var(--ink-soft); display: flex; justify-content: space-between; align-items: center; }
+.oxc .ans { font-family: var(--latin); font-size: 3.4rem; line-height: 1; color: var(--lime); }
+.oxc .back p { margin: 0; font-size: .9rem; opacity: .9; }
+
+.calc { background: var(--lemon); border-radius: var(--r); padding: 24px; display: flex; flex-direction: column; gap: 14px; }
+.calc h3 { font-family: var(--serif); font-weight: 400; font-size: 1.4rem; margin: 0; }
+.calc .fields { display: grid; grid-template-columns: 1fr 1fr; gap: 10px; }
+.calc label { display: grid; gap: 4px; font-size: .8rem; color: var(--ink-soft); }
+.calc input { font: inherit; font-size: 1.05rem; color: var(--ink); background: var(--paper); border: 0; border-radius: 12px; padding: 12px 14px; width: 100%; }
+.calc .result { font-family: var(--latin); font-size: 3.2rem; line-height: 1; }
+.calc .result small { font-family: var(--sans); font-size: .85rem; color: var(--ink-soft); margin-left: 6px; }
+.calc a { font-size: .88rem; font-weight: 600; }
+
+/* ---------- 06 Magazine ---------- */
+.tabs { display: flex; gap: 6px; flex-wrap: wrap; }
+.tabs button { border: 1.5px solid var(--line); background: transparent; border-radius: 999px; padding: 7px 14px; font-size: .88rem; }
+.tabs button.on { background: var(--ink); color: var(--cream); border-color: var(--ink); }
+.mag { display: grid; grid-template-columns: repeat(3, 1fr); gap: 16px; }
+.post { text-decoration: none; display: flex; flex-direction: column; gap: 12px; }
+.post .thumb { aspect-ratio: 4 / 3; border-radius: var(--r); display: grid; place-items: center; }
+.post .thumb svg { width: 42%; }
+.post .cat { font-size: .75rem; font-weight: 700; letter-spacing: .08em; color: var(--ink-soft); }
+.post h3 { font-family: var(--serif); font-weight: 400; font-size: 1.35rem; line-height: 1.4; margin: 0; }
+.post:hover h3 { text-decoration: underline; text-decoration-thickness: 1px; text-underline-offset: 4px; }
+.post p { margin: 0; color: var(--ink-soft); font-size: .92rem; }
+.post .ad { font-size: .72rem; color: var(--ink-soft); }
+
+/* ---------- Footer ---------- */
+.ft { margin-top: 120px; background: var(--ink); color: var(--cream); padding: 56px 0 40px; border-radius: 32px 32px 0 0; }
+.ft .big { font-family: var(--serif); font-weight: 300; font-size: clamp(2rem, 6vw, 4rem); line-height: 1.1; margin: 0 0 40px; }
+.ft .big em { font-family: var(--latin); font-style: italic; color: var(--lime); }
+.ft .cols { display: grid; grid-template-columns: repeat(4, 1fr); gap: 24px; font-size: .9rem; }
+.ft h4 { font-size: .78rem; letter-spacing: .1em; color: var(--pool-deep); margin: 0 0 10px; font-weight: 600; }
+.ft ul { list-style: none; margin: 0; padding: 0; display: grid; gap: 6px; }
+.ft a { text-decoration: none; opacity: .85; }
+.ft a:hover { opacity: 1; text-decoration: underline; }
+.ft .legal { margin-top: 40px; padding-top: 20px; border-top: 1px solid rgba(247,244,234,.15); font-size: .78rem; opacity: .6; display: flex; justify-content: space-between; gap: 12px; flex-wrap: wrap; }
+
+.mock-note { position: fixed; bottom: 16px; left: 50%; translate: -50% 0; background: var(--ink); color: var(--cream); font-size: .78rem; padding: 8px 14px; border-radius: 999px; z-index: 30; opacity: .85; }
+
+/* ---------- Responsive ---------- */
+@media (max-width: 1000px) {
+  .float { position: static; transform: none; animation: none; width: auto; flex: 0 0 230px; }
+  .floats { display: flex; gap: 12px; overflow-x: auto; padding: 8px 20px 12px; margin: 40px -20px 0; scrollbar-width: none; }
+  .f-tip { transform: rotate(-2deg); } .f-pace { transform: rotate(2deg); } .f-ox { transform: rotate(-1deg); } .f-sticker { transform: rotate(2deg); }
+  .quiz, .duo { grid-template-columns: 1fr; }
+  .lane ol { grid-template-columns: repeat(5, minmax(170px, 1fr)); overflow-x: auto; }
+  .mag { grid-template-columns: 1fr 1fr; }
+  .ft .cols { grid-template-columns: 1fr 1fr; }
+}
+@media (max-width: 720px) {
+  .hd .wrap { flex-wrap: wrap; height: auto; padding-top: 12px; padding-bottom: 8px; gap: 6px 10px; }
+  .nav { order: 3; flex-basis: 100%; margin: 0 -20px; padding: 0 16px; overflow-x: auto; scrollbar-width: none; }
+  .hd-right { margin-left: auto; }
+  .hd-right .pill.lime { display: none; }
+  .hero { padding-block: 40px 48px; }
+  .sec { padding-top: 64px; }
+  .quiz-box, .quiz-result { padding: 22px; }
+  .ox { grid-template-columns: 1fr; }
+  .oxc { height: 180px; }
+  .lane { padding: 24px 16px 20px; }
+  .lane ol { display: flex; flex-direction: column; overflow: visible; }
+  .lane .lane-rope { display: none; }
+  .lane li { flex-direction: row; align-items: center; gap: 14px; }
+  .lane .dist { flex: 0 0 72px; font-size: 2rem; }
+  .lane a.stop { margin: 0; flex: 1; }
+  .mag { grid-template-columns: 1fr; }
+}
+</style>
+</head>
+<body>
+
+<!-- ===== 선화 캐릭터 (SVG symbol) ===== -->
+<svg width="0" height="0" style="position:absolute" aria-hidden="true">
+  <defs>
+    <!-- 반복 물결: 50px 주기 -->
+    <path id="wavepath" d="M-50 92 q12.5 -7 25 0 t25 0 t25 0 t25 0 t25 0 t25 0 t25 0 t25 0 t25 0 t25 0 t25 0 t25 0 t25 0"/>
+  </defs>
+</svg>
+
+<header class="hd">
+  <div class="wrap">
+    <a class="logo" href="#">
+      <svg viewBox="0 0 40 40" class="sw" style="stroke-width:2.4"><circle cx="20" cy="20" r="18" fill="#BFD6EC" stroke="none"/><path d="M11 17a9 9 0 0 1 18 0" fill="#16213A" stroke="none"/><circle cx="16" cy="20" r="3" fill="#FFFDF6"/><circle cx="24" cy="20" r="3" fill="#FFFDF6"/><path d="M19 20h2"/><path d="M6 28q3.5-3 7 0t7 0 7 0 7 0"/></svg>
+      수영 영법 가이드
+    </a>
+    <nav class="nav" aria-label="주 메뉴">
+      <a href="#strokes">수영영법</a>
+      <a href="#magazine">수영지식</a>
+      <a href="#magazine">수영이슈</a>
+      <a href="#magazine">스토어</a>
+    </nav>
+    <div class="hd-right">
+      <a class="pill ghost" href="#">EN</a>
+      <a class="pill lime" href="#quiz">내 영법 찾기 →</a>
+    </div>
+  </div>
+</header>
+
+<main>
+  <!-- ===== Hero ===== -->
+  <section class="hero wrap">
+    <div class="kicker">Swim Stroke Guide</div>
+    <h1>물과 친해지는<br>가장 <em>쉬운</em> 방법</h1>
+    <p class="sub">자유형부터 접영까지, 처음 수영장에 가는 날부터 100m를 쉬지 않고 가는 날까지 한 걸음씩 함께합니다.</p>
+    <div class="ctas">
+      <a class="btn ink" href="#quiz">나에게 맞는 영법 찾기</a>
+      <a class="btn line" href="#roadmap">처음부터 배우기</a>
+    </div>
+
+    <svg class="mascot sw" viewBox="0 0 200 130" aria-hidden="true">
+      <!-- 물 위로 얼굴을 내민 캐릭터 -->
+      <circle class="bubble" cx="150" cy="70" r="5"/>
+      <circle class="bubble b" cx="162" cy="78" r="3.5"/>
+      <circle class="bubble c" cx="142" cy="80" r="2.5"/>
+      <path class="skin" d="M62 96 a38 38 0 0 1 76 0"/>
+      <path d="M62 80 a38 38 0 0 1 76 0 z" class="fillink"/>
+      <circle cx="84" cy="84" r="8" class="skin"/><circle cx="116" cy="84" r="8" class="skin"/>
+      <path d="M92 84h16"/>
+      <circle cx="84" cy="85" r="2" class="fillink"/><circle cx="116" cy="85" r="2" class="fillink"/>
+      <path d="M92 97q8 6 16 0"/>
+      <!-- 흔드는 손 -->
+      <path d="M142 92 q12 -20 18 -38"/><path d="M160 54 l-4 -8 M160 54 l2 -9 M160 54 l7 -6"/>
+      <g class="waves" style="animation-play-state:running"><use href="#wavepath" class="wave"/></g>
+      <rect x="0" y="92" width="200" height="40" fill="#BFD6EC" opacity=".6" stroke="none"/>
+    </svg>
+
+    <div class="floats">
+      <div class="float f-tip">
+        <span class="tag">오늘의 수영 팁</span>
+        <b id="tip">물속에서 코로 "음" 하고 내쉬어야 물 밖에서 "파" 하고 편하게 들이쉴 수 있어요.</b>
+      </div>
+      <div class="float f-pace">
+        <span class="tag">내 100m 페이스</span>
+        <div class="big">2:30</div>
+        <span>초급반 수준 · 1km 예상 25분</span>
+      </div>
+      <div class="float f-ox">
+        <span class="tag">수영 상식 O / X</span>
+        <b>밥 먹고 30분은 쉬어야 수영할 수 있다?</b>
+      </div>
+      <div class="float f-sticker">
+        <svg viewBox="0 0 60 60" class="sw" style="stroke-width:2.4"><circle cx="30" cy="30" r="26" fill="#FFFDF6"/><path d="M18 34q6 8 12 0t12 0"/><circle cx="23" cy="24" r="2" class="fillink"/><circle cx="37" cy="24" r="2" class="fillink"/></svg>
+        <span><b>25m 완주!</b>초보 로드맵 3단계</span>
+      </div>
+    </div>
+  </section>
+
+  <!-- ===== 01 수영영법 ===== -->
+  <section class="sec wrap" id="strokes">
+    <div class="sec-head">
+      <h2><span class="no">01</span>수영영법</h2>
+      <p>캐릭터가 각 영법으로 헤엄치는 모습을 보여 줘요. 자세, 호흡, 발차기와 흔한 실수까지 영법별로 정리했습니다.</p>
+    </div>
+    <div class="strokes">
+      <a class="sc" href="#">
+        <div class="art" style="background:var(--pool)">
+          <svg class="sw" viewBox="18 26 164 123" aria-hidden="true">
+            <g class="kick" style="transform-origin:66px 94px"><path d="M66 94 L28 90"/></g>
+            <g class="kick b" style="transform-origin:66px 94px"><path d="M66 94 L30 100"/></g>
+            <path d="M66 94 Q98 100 128 92" class="skin"/>
+            <g transform="translate(124 90)"><g class="arm"><path d="M0 0 V-38"/></g></g>
+            <g transform="translate(124 90)"><g class="arm b"><path d="M0 0 V-38"/></g></g>
+            <circle cx="142" cy="88" r="13" class="skin"/>
+            <path d="M129 86 a13 13 0 0 1 26 -4 z" class="fillink"/>
+            <circle cx="147" cy="92" r="4" class="skin"/><circle cx="147" cy="92" r="1.4" class="fillink"/>
+            <g class="waves"><use href="#wavepath" class="wave"/></g>
+            <rect class="water" x="0" y="92" width="200" height="60"/>
+          </svg>
+        </div>
+        <div class="meta">
+          <div class="row"><h3>자유형</h3><span class="chip">난이도 ●○○</span></div>
+          <p>가장 빠르고 가장 먼저 배우는 영법. 고개를 드는 게 아니라 돌려서 숨 쉬는 게 핵심이에요.</p>
+          <div class="go">자유형 배우기 →</div>
+        </div>
+      </a>
+
+      <a class="sc" href="#">
+        <div class="art" style="background:var(--lemon)">
+          <svg class="sw" viewBox="18 26 164 123" aria-hidden="true">
+            <g class="kick" style="transform-origin:70px 90px"><path d="M70 90 L32 86"/></g>
+            <g class="kick b" style="transform-origin:70px 90px"><path d="M70 90 L32 94"/></g>
+            <path d="M70 90 Q100 84 130 90" class="skin"/>
+            <g transform="translate(126 88)"><g class="arm" style="animation-direction:reverse"><path d="M0 0 V-40"/></g></g>
+            <g transform="translate(126 88)"><g class="arm b" style="animation-direction:reverse"><path d="M0 0 V-40"/></g></g>
+            <circle cx="144" cy="88" r="13" class="skin"/>
+            <path d="M144 75 a13 13 0 0 1 13 13 h-6 z" class="fillink"/>
+            <circle cx="140" cy="84" r="1.8" class="fillink"/><path d="M136 91 q4 3 8 0"/>
+            <g class="waves"><use href="#wavepath" class="wave"/></g>
+            <rect class="water" x="0" y="92" width="200" height="60"/>
+          </svg>
+        </div>
+        <div class="meta">
+          <div class="row"><h3>배영</h3><span class="chip">난이도 ●●○</span></div>
+          <p>하늘을 보고 누워서 가는 영법. 호흡은 자유롭지만 엉덩이가 가라앉지 않게 뜨는 게 관건이에요.</p>
+          <div class="go">배영 배우기 →</div>
+        </div>
+      </a>
+
+      <a class="sc" href="#">
+        <div class="art" style="background:var(--sage)">
+          <svg class="sw" viewBox="18 26 164 123" aria-hidden="true">
+            <g class="frogleg" style="transform-origin:70px 98px"><path d="M70 98 L44 92 L30 100"/></g>
+            <g class="frogleg b" style="transform-origin:70px 98px"><path d="M70 98 L44 106 L30 100"/></g>
+            <path d="M70 98 Q100 100 124 92" class="skin"/>
+            <g transform="translate(126 94)"><g class="frogarm"><path d="M0 0 L34 -4"/></g></g>
+            <g transform="translate(126 94)"><g class="frogarm b"><path d="M0 0 L34 4"/></g></g>
+            <g class="headbob">
+              <circle cx="132" cy="76" r="13" class="skin"/>
+              <path d="M119 74 a13 13 0 0 1 26 0 z" class="fillink"/>
+              <circle cx="138" cy="79" r="4" class="skin"/><circle cx="138" cy="79" r="1.4" class="fillink"/>
+            </g>
+            <g class="waves"><use href="#wavepath" class="wave"/></g>
+            <rect class="water" x="0" y="92" width="200" height="60"/>
+          </svg>
+        </div>
+        <div class="meta">
+          <div class="row"><h3>평영</h3><span class="chip">난이도 ●●○</span></div>
+          <p>당기고, 숨 쉬고, 차고, 뻗고. 개구리처럼 순서만 지키면 제일 여유롭게 오래 갈 수 있어요.</p>
+          <div class="go">평영 배우기 →</div>
+        </div>
+      </a>
+
+      <a class="sc fly" href="#">
+        <div class="art" style="background:var(--rose)">
+          <svg class="sw" viewBox="18 26 164 123" aria-hidden="true">
+            <g class="bodyroll" style="transform-origin:100px 92px">
+              <path d="M66 94 Q50 100 30 92" />
+              <path d="M66 94 Q98 102 126 90" class="skin"/>
+              <g transform="translate(122 88)"><g class="arm"><path d="M0 0 V-38"/></g></g>
+              <g transform="translate(126 90)"><g class="arm b"><path d="M0 0 V-38"/></g></g>
+              <circle cx="140" cy="84" r="13" class="skin"/>
+              <path d="M127 82 a13 13 0 0 1 26 -2 z" class="fillink"/>
+              <circle cx="146" cy="88" r="4" class="skin"/><circle cx="146" cy="88" r="1.4" class="fillink"/>
+            </g>
+            <g class="waves"><use href="#wavepath" class="wave"/></g>
+            <rect class="water" x="0" y="92" width="200" height="60"/>
+          </svg>
+        </div>
+        <div class="meta">
+          <div class="row"><h3>접영</h3><span class="chip">난이도 ●●●</span></div>
+          <p>힘보다 리듬. 가슴에서 시작해 발끝으로 흐르는 웨이브가 생기면 팔은 따라와요.</p>
+          <div class="go">접영 배우기 →</div>
+        </div>
+      </a>
+    </div>
+  </section>
+
+  <!-- ===== 02 퀴즈 ===== -->
+  <section class="sec wrap" id="quiz">
+    <div class="sec-head">
+      <h2><span class="no">02</span>나에게 맞는 영법은?</h2>
+      <p>질문 네 개면 충분해요. 결과는 친구에게 공유할 수도 있어요.</p>
+    </div>
+    <div class="quiz">
+      <div class="quiz-box">
+        <div class="progress" id="qprog"></div>
+        <p class="q" id="qtext"></p>
+        <div class="opts" id="qopts"></div>
+      </div>
+      <div class="quiz-result" id="qres">
+        <div class="art" id="qart"></div>
+        <div class="label" id="qlabel">결과 미리보기</div>
+        <h3 id="qtitle">?</h3>
+        <p id="qdesc">왼쪽 질문에 답하면 여기에 나의 영법이 나타나요.</p>
+        <div class="acts" id="qacts" hidden>
+          <a class="btn ink" id="qlink" href="#">배우러 가기</a>
+          <button class="btn line" id="qshare" type="button">결과 공유</button>
+          <button class="btn line" id="qretry" type="button">다시 하기</button>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ===== 03 레인 로드맵 ===== -->
+  <section class="sec wrap" id="roadmap">
+    <div class="sec-head">
+      <h2><span class="no">03</span>0m에서 100m까지</h2>
+      <p>수영장 레인 한 줄을 따라가듯, 단계마다 읽을 글을 이어 두었어요.</p>
+    </div>
+    <div class="lane">
+      <div class="lane-rope" aria-hidden="true"></div>
+      <ol>
+        <li><div class="dist">0<small>m</small></div><a class="stop" href="#"><b>물과 친해지기</b><span>음파 호흡과 뜨기</span></a></li>
+        <li><div class="dist">12.5<small>m</small></div><a class="stop" href="#"><b>킥판 발차기</b><span>고관절에서 차는 플러터킥</span></a></li>
+        <li><div class="dist">25<small>m</small></div><a class="stop" href="#"><b>자유형 완주</b><span>두 스트로크마다 호흡</span></a></li>
+        <li><div class="dist">50<small>m</small></div><a class="stop" href="#"><b>배영·평영</b><span>누워 뜨기와 타이밍</span></a></li>
+        <li><div class="dist">100<small>m</small></div><a class="stop" href="#"><b>접영 도전</b><span>웨이브와 두 번 킥</span></a></li>
+      </ol>
+    </div>
+  </section>
+
+  <!-- ===== 04 OX + 05 계산기 ===== -->
+  <section class="sec wrap">
+    <div class="sec-head">
+      <h2><span class="no">04</span>수영 상식 O / X</h2>
+      <p>카드를 눌러 정답을 확인해 보세요.</p>
+    </div>
+    <div class="duo">
+      <div class="ox">
+        <button class="oxc" type="button"><div class="in">
+          <div class="face front"><b>밥 먹고 30분은 쉬어야 수영할 수 있다.</b><span class="hint">눌러서 확인 <span>O / X</span></span></div>
+          <div class="face back"><span class="ans">X</span><p>식후 수영이 위험하다는 근거는 약해요. 다만 과식 직후 격하게 수영하면 속이 불편할 수 있어요.</p></div>
+        </div></button>
+        <button class="oxc" type="button"><div class="in">
+          <div class="face front"><b>수영하는 동안에도 땀을 흘린다.</b><span class="hint">눌러서 확인 <span>O / X</span></span></div>
+          <div class="face back"><span class="ans">O</span><p>물속에서도 체온이 오르면 땀이 나요. 느끼지 못할 뿐이라 수분 보충이 필요합니다.</p></div>
+        </div></button>
+        <button class="oxc" type="button"><div class="in">
+          <div class="face front"><b>수경에 김이 서리면 침을 바르면 된다.</b><span class="hint">눌러서 확인 <span>O / X</span></span></div>
+          <div class="face back"><span class="ans">△</span><p>잠깐은 효과가 있지만 코팅이 상할 수 있어요. 김 서림 방지제를 쓰고 렌즈 안쪽은 손으로 문지르지 마세요.</p></div>
+        </div></button>
+      </div>
+
+      <form class="calc" id="calc" onsubmit="return false">
+        <span class="no" style="font-size:.85rem;font-weight:600;color:var(--ink-soft)">05 · 미니 계산기</span>
+        <h3>내 100m 페이스는?</h3>
+        <div class="fields">
+          <label>수영한 거리 (m)<input id="cd" inputmode="numeric" value="50"></label>
+          <label>기록 (분:초)<input id="ct" inputmode="numeric" value="1:10"></label>
+        </div>
+        <div class="result" id="cr">2:20<small>/100m</small></div>
+        <a href="#">목표 거리 예상 시간까지 계산하기 →</a>
+      </form>
+    </div>
+  </section>
+
+  <!-- ===== 06 매거진 ===== -->
+  <section class="sec wrap" id="magazine">
+    <div class="sec-head">
+      <h2><span class="no">06</span>읽을거리</h2>
+      <div class="tabs" id="tabs">
+        <button class="on" data-f="all" type="button">전체</button>
+        <button data-f="지식" type="button">수영지식</button>
+        <button data-f="이슈" type="button">수영이슈</button>
+        <button data-f="스토어" type="button">스토어</button>
+      </div>
+    </div>
+    <div class="mag" id="mag">
+      <a class="post" href="#" data-c="지식">
+        <div class="thumb" style="background:var(--pool)"><svg viewBox="0 0 80 50" class="sw"><path d="M6 25a12 12 0 0 0 24 0a12 12 0 0 0 -24 0zM50 25a12 12 0 0 0 24 0a12 12 0 0 0 -24 0z" class="skin"/><path d="M30 25h20M2 22l4 3M78 22l-4 3"/></svg></div>
+        <span class="cat">수영지식 · 장비</span>
+        <h3>초보자 수경 고르는 법: 미러와 클리어, 뭐가 다를까</h3>
+        <p>실내 수영장이라면 어떤 렌즈가 맞는지, 물이 새지 않는 수경 고르는 요령.</p>
+      </a>
+      <a class="post" href="#" data-c="지식">
+        <div class="thumb" style="background:var(--sage)"><svg viewBox="0 0 80 50" class="sw"><path d="M6 10h68M6 40h68"/><path d="M6 25h68" stroke-dasharray="4 5"/><path d="M20 18l8 7-8 7M52 18l-8 7 8 7"/></svg></div>
+        <span class="cat">수영지식 · 에티켓</span>
+        <h3>자유수영 레인 에티켓 7가지, 처음 가도 당황하지 않기</h3>
+        <p>어느 쪽으로 돌아야 하는지, 추월은 언제 하는지 한 번에 정리했어요.</p>
+      </a>
+      <a class="post" href="#" data-c="이슈">
+        <div class="thumb" style="background:var(--lemon)"><svg viewBox="0 0 80 50" class="sw"><rect x="14" y="8" width="52" height="34" rx="4" class="skin"/><path d="M22 18h36M22 26h36M22 34h20"/></svg></div>
+        <span class="cat">수영이슈 · 소식</span>
+        <h3>이번 달 수영 소식 모아보기</h3>
+        <p>운영자가 고른 대회, 수영장, 장비 소식을 매달 한 번에 정리합니다.</p>
+      </a>
+      <a class="post" href="#" data-c="지식">
+        <div class="thumb" style="background:var(--rose)"><svg viewBox="0 0 80 50" class="sw"><path d="M40 42s-18-10-18-22a9 9 0 0 1 18-4a9 9 0 0 1 18 4c0 12-18 22-18 22z" class="skin"/></svg></div>
+        <span class="cat">수영지식 · 건강</span>
+        <h3>수영 30분 칼로리, 영법마다 얼마나 다를까</h3>
+        <p>자유형과 평영, 같은 시간을 해도 소모 칼로리가 달라지는 이유.</p>
+      </a>
+      <a class="post" href="#" data-c="이슈">
+        <div class="thumb" style="background:var(--pool-deep)"><svg viewBox="0 0 80 50" class="sw"><circle cx="40" cy="25" r="16" class="skin"/><path d="M40 15v10l7 5"/></svg></div>
+        <span class="cat">수영이슈 · 칼럼</span>
+        <h3>새벽 수영 한 달 해 보니 달라진 것들</h3>
+        <p>운영자가 직접 해 본 루틴과 기록 변화를 솔직하게 적었어요.</p>
+      </a>
+      <a class="post" href="#" data-c="스토어">
+        <div class="thumb" style="background:var(--lime)"><svg viewBox="0 0 80 50" class="sw"><path d="M22 16h36l-4 26H26z" class="skin"/><path d="M32 16a8 8 0 0 1 16 0"/></svg></div>
+        <span class="cat">스토어 · 추천</span>
+        <h3>초보 수영 준비물 체크리스트와 추천 장비</h3>
+        <p>수경, 수모, 수영복, 가방까지 처음 살 때 필요한 것만 골랐어요.</p>
+        <span class="ad">이 글에는 쿠팡 파트너스 링크가 포함되어 있으며, 구매 시 일정 수수료를 받을 수 있습니다.</span>
+      </a>
+    </div>
+  </section>
+</main>
+
+<footer class="ft">
+  <div class="wrap">
+    <p class="big">오늘도 한 바퀴,<br><em>just keep swimming.</em></p>
+    <div class="cols">
+      <div><h4>수영영법</h4><ul><li><a href="#">호흡과 뜨기</a></li><li><a href="#">자유형</a></li><li><a href="#">배영</a></li><li><a href="#">평영</a></li><li><a href="#">접영</a></li></ul></div>
+      <div><h4>수영지식</h4><ul><li><a href="#">장비</a></li><li><a href="#">에티켓</a></li><li><a href="#">건강</a></li><li><a href="#">페이스 계산기</a></li></ul></div>
+      <div><h4>수영이슈 · 스토어</h4><ul><li><a href="#">소식</a></li><li><a href="#">칼럼</a></li><li><a href="#">추천 장비</a></li></ul></div>
+      <div><h4>수영 영법 가이드</h4><ul><li><a href="#">소개</a></li><li><a href="#">문의</a></li><li><a href="#">개인정보처리방침</a></li><li><a href="#">English</a></li></ul></div>
+    </div>
+    <div class="legal"><span>© 2026 수영 영법 가이드</span><span>일부 글에는 쿠팡 파트너스 링크가 포함될 수 있습니다.</span></div>
+  </div>
+</footer>
+
+<div class="mock-note">메인 페이지 시안 · 링크는 아직 연결되지 않았어요</div>
+
+<script>
+// 오늘의 팁: 날짜마다 바뀜
+const tips = [
+  '물속에서 코로 "음" 하고 내쉬어야 물 밖에서 "파" 하고 편하게 들이쉴 수 있어요.',
+  '자유형에서 다리가 가라앉으면 시선을 바닥으로 내려 보세요. 머리가 내려가면 다리가 떠요.',
+  '평영은 킥 뒤에 1~2초 미끄러지는 글라이드가 속도의 절반이에요.',
+  '배영은 귀가 물에 잠겨야 편해요. 턱을 당기면 엉덩이가 가라앉아요.',
+  '접영은 두 번 차요. 손이 들어갈 때 한 번, 밀어낼 때 한 번.',
+];
+document.getElementById('tip').textContent = tips[Math.floor(Date.now() / 864e5) % tips.length];
+
+// 퀴즈
+const R = {
+  free: { t: '자유형형', d: '빠르게 앞으로 나아가는 게 좋은 당신. 옆으로 숨 쉬는 타이밍만 익히면 금방 25m를 넘길 거예요.', art: 0 },
+  back: { t: '배영형', d: '느긋하게 하늘을 보며 떠 있는 게 좋은 당신. 호흡 걱정 없이 오래 헤엄칠 수 있어요.', art: 1 },
+  breast: { t: '평영형', d: '박자와 리듬을 즐기는 당신. 당기고, 숨 쉬고, 차고, 뻗는 순서가 몸에 딱 맞을 거예요.', art: 2 },
+  fly: { t: '접영형', d: '에너지가 넘치는 당신. 힘보다 웨이브 리듬을 먼저 익히면 가장 멋진 영법이 됩니다.', art: 3 },
+};
+const Q = [
+  { q: '물에 얼굴을 넣는 건 어때요?', o: [['아직 조금 무서워요', { back: 2, breast: 1 }], ['괜찮아요, 잠수도 좋아요', { free: 2, fly: 1 }]] },
+  { q: '수영을 하는 가장 큰 이유는?', o: [['운동, 다이어트', { fly: 1, free: 1 }], ['여유롭게 오래 헤엄치기', { breast: 2, back: 1 }], ['일단 25m 완주!', { free: 2 }]] },
+  { q: '나와 더 가까운 스타일은?', o: [['박자 맞추는 게 좋아요', { breast: 2 }], ['힘이 넘쳐요', { fly: 2 }], ['누워서 쉬는 게 최고', { back: 2 }]] },
+  { q: '가장 끌리는 물속 친구는?', o: [['돌고래', { fly: 2 }], ['개구리', { breast: 2 }], ['수달', { back: 2 }], ['물개', { free: 2 }]] },
+];
+let step = 0, score = {};
+const $ = (id) => document.getElementById(id);
+function renderQ() {
+  $('qprog').innerHTML = Q.map((_, i) => `<i class="${i <= step ? 'on' : ''}"></i>`).join('');
+  $('qtext').textContent = `Q${step + 1}. ${Q[step].q}`;
+  $('qopts').innerHTML = Q[step].o.map(([label], i) => `<button class="opt" type="button" data-i="${i}">${label}</button>`).join('');
+}
+$('qopts').addEventListener('click', (e) => {
+  const b = e.target.closest('.opt'); if (!b) return;
+  for (const [k, v] of Object.entries(Q[step].o[b.dataset.i][1])) score[k] = (score[k] || 0) + v;
+  step++;
+  step < Q.length ? renderQ() : showResult();
+});
+function showResult() {
+  const key = Object.entries(score).sort((a, b) => b[1] - a[1])[0][0];
+  const r = R[key];
+  $('qart').innerHTML = document.querySelectorAll('.sc .art svg')[r.art].outerHTML;
+  $('qlabel').textContent = '나에게 맞는 영법';
+  $('qtitle').textContent = `당신은 ${r.t}!`;
+  $('qdesc').textContent = r.d;
+  $('qacts').hidden = false;
+  $('qtext').textContent = '결과가 나왔어요 👉';
+  $('qopts').innerHTML = '';
+  $('qprog').innerHTML = Q.map(() => '<i class="on"></i>').join('');
+}
+$('qretry').onclick = () => { step = 0; score = {}; $('qacts').hidden = true; $('qart').innerHTML = ''; $('qtitle').textContent = '?'; $('qlabel').textContent = '결과 미리보기'; $('qdesc').textContent = '왼쪽 질문에 답하면 여기에 나의 영법이 나타나요.'; renderQ(); };
+$('qshare').onclick = async () => {
+  const text = `${$('qtitle').textContent} 나에게 맞는 수영 영법 찾기`;
+  try { if (navigator.share) await navigator.share({ text, url: location.href }); else { await navigator.clipboard.writeText(`${text} ${location.href}`); $('qshare').textContent = '링크 복사됨'; } } catch {}
+};
+renderQ();
+
+// OX 뒤집기
+document.querySelectorAll('.oxc').forEach((c) => c.addEventListener('click', () => c.classList.toggle('flip')));
+
+// 미니 계산기
+function calc() {
+  const d = +$('cd').value, p = $('ct').value.split(':').map(Number);
+  const s = p.reduce((a, n) => a * 60 + n, 0);
+  if (!(d > 0) || !(s > 0) || p.some(isNaN)) { $('cr').innerHTML = '–<small>/100m</small>'; return; }
+  const x = Math.round(s / d * 100);
+  $('cr').innerHTML = `${Math.floor(x / 60)}:${String(x % 60).padStart(2, '0')}<small>/100m</small>`;
+}
+$('cd').oninput = $('ct').oninput = calc; calc();
+
+// 매거진 탭
+$('tabs').addEventListener('click', (e) => {
+  const b = e.target.closest('button'); if (!b) return;
+  document.querySelectorAll('#tabs button').forEach((x) => x.classList.toggle('on', x === b));
+  document.querySelectorAll('#mag .post').forEach((p) => { p.hidden = b.dataset.f !== 'all' && p.dataset.c !== b.dataset.f; });
+});
+</script>
+</body>
+</html>

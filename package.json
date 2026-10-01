@@ -1,0 +1,15 @@
+{
+  "name": "swimguide",
+  "private": true,
+  "type": "module",
+  "scripts": {
+    "build": "node src/build.mjs",
+    "dev": "npm run build && wrangler dev",
+    "deploy": "npm run build && wrangler deploy",
+    "verify": "node scripts/verify.mjs",
+    "indexnow": "node scripts/indexnow.mjs"
+  },
+  "devDependencies": {
+    "wrangler": "^4"
+  }
+}
