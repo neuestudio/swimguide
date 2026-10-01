@@ -34,6 +34,7 @@ export default {
     mistakeFix: 'How to fix it',
     postsCount: 'articles',
     viewAll: 'View all',
+    sources: 'Sources',
   },
 
   cats: {
@@ -56,6 +57,12 @@ export default {
       name: 'Knowledge',
       title: 'Swimming Know-How | Gear, Lane Etiquette, Calories & Training Plans',
       description: 'What to know before you hit the pool: choosing goggles, lane etiquette, calories by stroke, a 4-week beginner plan, cramps, water in the ear and a swim glossary.',
+      groups: {
+        basics: { name: 'Basics and gear', lead: 'Pool know-how and gear advice worth having before your first swim.' },
+        training: { name: 'Training and tools', lead: 'Training plans and tracking tools that help you improve on your own.' },
+        health: { name: 'Health', lead: 'Calories, stretching and injury prevention for a swimmer’s body.' },
+        safety: { name: 'Safety and etiquette', lead: 'How to stay calm in the water and the rules for sharing it with others.' },
+      },
       intro: [
         'What happens outside the stroke matters just as much. Which goggles should you buy, which way do you swim in a lane, and what do you do when a cramp hits? This section answers the questions almost every new swimmer has. Try the pace calculator to see how fast you swim, too.',
       ],
@@ -152,7 +159,7 @@ export default {
       { q: 'You sweat while you swim.', a: 'T', exp: 'Your body still sweats when it warms up in the water. You just do not notice, so drink water.' },
       { q: 'The stronger the pool smell, the cleaner the water.', a: 'F', exp: 'A strong smell usually comes from chloramines, formed when chlorine meets sweat and urine. That is why you shower first.' },
     ],
-    calc: { label: '05 · Mini calculator', h: 'What is my 100 m pace?', distance: 'Distance (m)', time: 'Time (min:sec)', link: 'Estimate a finish time for any distance' },
+    calc: { label: '05 · Mini calculator', tabPace: 'Pace', tabCal: 'Calories', h: 'What is my 100 m pace?', distance: 'Distance (m)', time: 'Time (min:sec)', link: 'Estimate a finish time for any distance', calH: 'How many calories will I burn?', weight: 'Weight (kg)', minutes: 'Minutes', stroke: 'Stroke and effort', calLink: 'Compare calories by stroke' },
     magH: 'Reading',
     magAll: 'All',
   },
@@ -191,6 +198,7 @@ export default {
           paras: [
             'Take a breath by turning your head along with your body roll. Keep one goggle and one ear in the water and your head will not lift.',
             'The window for inhaling is short, so exhale steadily through your nose while your face is in the water. If you hold your breath and try to exhale and inhale all at once, you will run out of time and swallow water.',
+            'When you breathe, look to the side rather than forward. Trying to look ahead or up lifts your head and drops your legs.',
           ],
         },
         {
@@ -205,7 +213,7 @@ export default {
           ],
         },
         {
-          type: 'steps', h: 'The arm stroke in 4 phases',
+          type: 'steps', figs: 'arm', h: 'The arm stroke in 4 phases',
           items: [
             { t: 'Entry', d: 'Place your hand in fingertips first, in line with your shoulder, and reach forward.' },
             { t: 'Catch', d: 'Keep your elbow high and hold the water with your palm and forearm.' },
@@ -235,6 +243,7 @@ export default {
             { t: 'Side kick with a board', how: 'Hold a kickboard with your lead hand and kick while lying on your side. It teaches you to breathe by turning the head from a rotated position.' },
             { t: 'Catch-up', how: 'Start each stroke only after the recovering hand touches the extended hand. It slows down a rushed stroke and lets you check your hand entry.' },
             { t: 'Fingertip drag', how: 'Drag your fingertips lightly along the surface during recovery. It builds the habit of a high elbow without thinking about it.' },
+            { t: 'One-arm breathing with a board', how: 'Hold a kickboard in one hand, stroke with the other arm and breathe to that side. If your ear and the back of your head stay against the arm holding the board, your head is not lifting.' },
           ],
         },
         {
@@ -290,7 +299,7 @@ export default {
           ],
         },
         {
-          type: 'steps', h: 'The arm stroke in 4 phases',
+          type: 'steps', figs: 'arm', h: 'The arm stroke in 4 phases',
           items: [
             { t: 'Entry', d: 'Keep the arm straight and enter little finger first at eleven and one o’clock above your head.' },
             { t: 'Catch and pull', d: 'Bend the elbow and pull the water toward your side.' },
@@ -360,12 +369,20 @@ export default {
           ],
         },
         {
-          type: 'steps', h: 'The whip kick in 3 steps',
+          type: 'steps', figs: 'kick', h: 'The whip kick in 3 steps',
           lead: 'This is where most of the speed comes from, so learn it before the arms.',
           items: [
             { t: 'Draw', d: 'Bring your heels toward your seat while keeping the knees about hip width apart.' },
             { t: 'Flex', d: 'Turn your feet out so the soles and inner edges face backward.' },
             { t: 'Kick and close', d: 'Kick back in a half circle and finish with the feet together.' },
+          ],
+        },
+        {
+          type: 'list', h: 'Kick feel checklist',
+          items: [
+            'Both feet stay underwater the whole time, and feet popping above the surface mean you drew them too high.',
+            'Just before the kick you should feel the water press against the inside of your soles, which means your ankles are flexed properly.',
+            'At the end of the kick your feet come together and you feel yourself slide forward.',
           ],
         },
         {
@@ -408,7 +425,7 @@ export default {
           ],
         },
       ],
-      related: ['butterfly', 'breathing', 'freestyle'],
+      related: ['breaststroke-kick', 'butterfly', 'breathing'],
     },
 
     {
@@ -442,7 +459,7 @@ export default {
           ],
         },
         {
-          type: 'steps', h: 'The arm stroke in 4 phases',
+          type: 'steps', figs: 'arm', h: 'The arm stroke in 4 phases',
           items: [
             { t: 'Entry', d: 'Enter both hands at the same time, shoulder width apart.' },
             { t: 'Catch and pull', d: 'Hold the water with high elbows and pull under the body in a keyhole shape.' },
@@ -485,7 +502,7 @@ export default {
           ],
         },
       ],
-      related: ['breaststroke', 'freestyle', 'pace'],
+      related: ['butterfly-wave', 'breaststroke', 'freestyle'],
     },
   ],
 
@@ -559,6 +576,7 @@ export default {
 
   pace: {
     key: 'pace',
+    group: 'training',
     name: 'Swim Pace Calculator',
     tag: 'Tool',
     card: 'Enter a distance and time to get your pace per 100 m and a finish-time estimate.',

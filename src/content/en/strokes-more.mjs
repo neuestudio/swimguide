@@ -3,6 +3,7 @@ export default [
   // ---------- Survival & leisure ----------
   {
     key: 'survival',
+    sources: [{ t: 'CDC, Preventing Drowning', url: 'https://www.cdc.gov/drowning/prevention/index.html' }],
     group: 'survival',
     name: 'Survival Swimming',
     sub: 'Back float & staying safe',
@@ -25,6 +26,15 @@ export default [
           { t: 'Spread out', d: 'Stretch your arms and legs into a star to spread your weight on the water.' },
           { t: 'Push your belly up', d: 'Lift your belly button slightly so your hips do not sink.' },
           { t: 'Breathe in short bursts', d: 'Exhale quickly and refill with a big breath to keep as much air in your lungs as possible.' },
+        ],
+      },
+      {
+        type: 'steps', h: 'Moving while back floating',
+        lead: 'Use this when you need to drift slowly toward an edge or a floating object while waiting for help.',
+        items: [
+          { t: 'Hand position', d: 'While floating on your back, rest both hands beside your hips.' },
+          { t: 'Push the water', d: 'Push small amounts of water toward your feet with your palms and you will move slowly headfirst.' },
+          { t: 'Small and slow', d: 'Fast strokes leave you breathless and unsteady, so keep the movements small and slow.' },
         ],
       },
       {
@@ -323,6 +333,7 @@ export default [
 
   {
     key: 'turns',
+    sources: [{ t: 'World Aquatics, Competition Regulations', url: 'https://www.worldaquatics.com/rules/competition-regulations' }],
     group: 'skills',
     name: 'Open Turns and Flip Turns',
     sub: 'Changing direction at the wall',
@@ -348,8 +359,8 @@ export default [
         type: 'steps', h: 'Flip turn',
         items: [
           { t: 'Judge the distance', d: 'Take your last stroke when you see the T mark on the bottom, about 2 m from the wall.' },
-          { t: 'Somersault', d: 'Tuck your chin, pull your knees to your chest and roll forward.' },
-          { t: 'Plant the feet', d: 'After the roll your feet land on the wall with your body facing up.' },
+          { t: 'Somersault', d: 'Keep your arms at your sides, tuck your chin and lead with your head as you pull your knees in. Turn using your head and knees rather than sweeping with your arms.' },
+          { t: 'Plant the feet', d: 'After the roll your feet land on the wall with your body facing up. Knees bent to about 90 degrees give you a strong push-off.' },
           { t: 'Push and rotate', d: 'Push off and rotate onto your front as you glide away.' },
         ],
       },
@@ -383,6 +394,7 @@ export default [
 
   {
     key: 'underwater',
+    sources: [{ t: 'American Red Cross, Shallow Water Blackout vs. Hypoxic Blackout', url: 'https://www.redcross.org/take-a-class/resources/articles/shallow-water-hypoxic-blackout' }, { t: 'CDC, Preventing Drowning', url: 'https://www.cdc.gov/drowning/prevention/index.html' }, { t: 'World Aquatics, Competition Regulations', url: 'https://www.worldaquatics.com/rules/competition-regulations' }],
     group: 'skills',
     name: 'Underwater Swimming and Dolphin Kick',
     sub: 'The fast phase after starts and turns',
@@ -437,6 +449,7 @@ export default [
 
   {
     key: 'im',
+    sources: [{ t: 'World Aquatics, Competition Regulations', url: 'https://www.worldaquatics.com/rules/competition-regulations' }],
     group: 'skills',
     name: 'Individual Medley (IM)',
     sub: 'All four strokes in one race',
@@ -484,5 +497,111 @@ export default [
       },
     ],
     related: ['butterfly', 'turns', 'backstroke'],
+  },
+  {
+    key: 'butterfly-wave',
+    group: 'skills',
+    name: 'Butterfly Body Wave Drills',
+    sub: 'From chest press to dolphin kick',
+    level: 3,
+    card: 'If butterfly only feels exhausting, start with the wave.',
+    title: 'How to Do the Butterfly Wave | Step-by-Step Body Wave Drills',
+    description: 'Fix your butterfly wave: the chest press feel, head position, how the wave travels to your toes, and drills from wall waves to single-arm fly.',
+    h1: 'Butterfly Wave Drills: From Chest to Toes',
+    intro: [
+      'If butterfly feels exhausting and you barely move, the wave is usually missing. Trying to haul yourself up with your arms burns you out within a few strokes.',
+      'The wave is a small chest press that travels through the hips and knees to the toes like a whip. This page isolates the wave and builds it step by step.',
+    ],
+    sections: [
+      {
+        type: 'list', h: 'The key feelings',
+        items: [
+          'The wave starts at the chest, not the knees.',
+          'Picture a see-saw where pressing the chest lifts the hips and lifting the chest drops them.',
+          'Keep the head between the arms moving with the chest, without big lifts or ducks.',
+          'The movement can be small, and quick rhythmic waves near the surface work best.',
+        ],
+      },
+      {
+        type: 'steps', h: 'Step-by-step wave drills',
+        items: [
+          { t: 'Standing chest press', d: 'Stand chest deep with arms forward and practice pressing only your chest down and releasing it.' },
+          { t: 'Wave at the wall', d: 'Hold the wall face down and let your hips rise and fall in time with the chest press.' },
+          { t: 'Wave with arms extended', d: 'Push off with arms forward and travel 10 m using only the wave.' },
+          { t: 'Add the dolphin kick', d: 'Let the wave flow to your toes and finish with a press of the tops of your feet.' },
+          { t: 'Single-arm fly', d: 'Leave one arm in front, stroke with the other and time two kicks, one as the hand enters and one as it pushes.' },
+        ],
+      },
+      {
+        type: 'mistakes', h: 'Common mistakes when the wave will not come',
+        items: [
+          { t: 'Bending only the knees', why: 'Kicking from the knees breaks the wave and just moves the legs up and down.', fix: 'Start from the chest press and let the knees bend as a result.' },
+          { t: 'Lifting the head high', why: 'A high head breaks the wave and sinks the hips.', fix: 'Look at the bottom and keep your head between your arms, moving with your chest.' },
+          { t: 'Diving too deep', why: 'Going deep means spending energy climbing back up.', fix: 'Keep the wave small, just below the surface.' },
+        ],
+      },
+      {
+        type: 'faq', h: 'Frequently asked questions',
+        items: [
+          { q: 'Do fins help with wave practice?', a: 'Fins move you forward with less effort, which makes the rhythm easier to feel. Mix in practice without fins too so it carries over to real butterfly.' },
+          { q: 'My lower back hurts. Should I keep practicing?', a: 'Bending hard from the lower back can strain it, so start the motion at the chest and make it smaller. Stop and see a professional if the pain continues.' },
+        ],
+      },
+    ],
+    related: ['butterfly', 'underwater', 'training-gear'],
+  },
+
+  {
+    key: 'breaststroke-kick',
+    group: 'skills',
+    name: 'Breaststroke Kick Drills',
+    sub: 'From dry land to the kickboard',
+    level: 2,
+    card: 'Going nowhere in breaststroke? Rebuild the kick on its own.',
+    title: 'Breaststroke Kick Drills | From Dry-Land Practice to the Kickboard',
+    description: 'Breaststroke kick drills for when you are not moving forward: dry-land practice, wall kicks, back kicks and kickboard kicks, plus the ankle flex and common mistakes.',
+    h1: 'Breaststroke Kick Drills: From Land to Water',
+    intro: [
+      'In breaststroke, the kick provides more of your propulsion than in any other stroke. If you are not moving forward, fixing the kick is faster than fixing the arms.',
+      'The kick is hard to see while you swim, so learning the shape on dry land first and then moving into the water works well. Work through the steps below one at a time.',
+    ],
+    sections: [
+      {
+        type: 'steps', h: 'Step-by-step kick drills',
+        items: [
+          { t: 'Learn the shape on land', d: 'Lie face down on a bench or bed with your lower legs off the edge and slowly repeat draw, flex, kick and close.' },
+          { t: 'Kick at the wall', d: 'Hold the pool wall face down and repeat the movement in the water, feeling for water against your soles.' },
+          { t: 'Kick on your back', d: 'Kick breaststroke on your back so you can see whether your knees break the surface.' },
+          { t: 'Kickboard kick', d: 'Kick face down on a board and glide one to two seconds after each kick to feel how far one kick takes you.' },
+          { t: 'Add the arms', d: 'Finally, pull with the arms, draw the legs, and kick as the arms extend.' },
+        ],
+      },
+      {
+        type: 'table', h: 'One kick, broken down',
+        head: ['Phase', 'Leg shape', 'Check'],
+        rows: [
+          ['Draw', 'Heels toward your seat', 'Knees hip width, not pulled to the belly'],
+          ['Flex', 'Toes turned out', 'Inner soles face backward'],
+          ['Kick', 'Half circle backward', 'Push water with the inner soles'],
+          ['Close', 'Feet together, legs straight', 'Glide for one to two seconds'],
+        ],
+      },
+      {
+        type: 'mistakes', h: 'Common mistakes',
+        items: [
+          { t: 'Kicking with pointed toes', why: 'Kicking with the top of the foot lets the water slip past.', fix: 'Flex your feet firmly outward right before the kick.' },
+          { t: 'One foot twisting', why: 'Asymmetric legs twist your body and can even break the rules.', fix: 'Kick on your back and check that both feet move symmetrically.' },
+          { t: 'Drawing up straight after the kick', why: 'The next movement eats the speed the kick just gave you.', fix: 'Close your feet, glide for one to two seconds, then start again.' },
+        ],
+      },
+      {
+        type: 'faq', h: 'Frequently asked questions',
+        items: [
+          { q: 'My breaststroke kick moves me backward.', a: 'You are probably pushing water forward with your soles as you draw your legs up. Draw slowly with toes pointed, and flex and kick hard only on the way back.' },
+          { q: 'What if my knees hurt?', a: 'Kicking too wide or twisting strains the inside of the knee. Narrow your knees to hip width, and stop and see a professional if pain continues.' },
+        ],
+      },
+    ],
+    related: ['breaststroke', 'elementary-backstroke', 'treading'],
   },
 ];

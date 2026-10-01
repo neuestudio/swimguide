@@ -285,8 +285,30 @@ Object.assign(SWIMMERS, {
     ${FRONT}</svg>`,
 });
 
+// 캐릭터는 어떤 비율의 칸에 들어가도 꽉 채우도록 (커버 16:9, 카드 4:3)
+for (const k of Object.keys(SWIMMERS)) SWIMMERS[k] = SWIMMERS[k].replace('<svg class="sw ch', '<svg preserveAspectRatio="xMidYMid slice" class="sw ch');
+
+// 연습법 전용 글: 같은 캐릭터를 수모 색만 바꿔 쓴다
+SWIMMERS['butterfly-wave'] = SWIMMERS.underwater.replace('--cap:#F7C948', '--cap:#F26B4F');
+SWIMMERS['breaststroke-kick'] = SWIMMERS.breaststroke.replace('--cap:#F7C948', '--cap:#9CCB3B');
+Object.assign(STROKE_BG, { 'butterfly-wave': 'rose', 'breaststroke-kick': 'lemon' });
+
+// 단계별 동작 그림: 같은 캐릭터의 팔·다리 각도를 단계마다 고정해 그린다. [앞 팔(다리), 뒤 팔(다리)] 회전 각도
+const POSES = {
+  freestyle: { arm: [[100, 280], [135, 315], [200, 20], [-20, 160]] },
+  backstroke: { arm: [[85, 265], [130, 310], [220, 40], [0, 180]] },
+  butterfly: { arm: [[90, 90], [135, 135], [215, 215], [300, 300]] },
+  breaststroke: { kick: [[-40, 40], [-24, 24], [0, 0]] },
+};
+function poseSvg(key, [a, b]) {
+  return SWIMMERS[key]
+    .replace('class="sw ch', 'class="sw ch still')
+    .replace(/<g class="(arm|frogleg) b( rev)?">/, `<g style="transform:rotate(${b}deg)">`)
+    .replace(/<g class="(arm|frogleg)( rev)?">/, `<g style="transform:rotate(${a}deg)">`);
+}
+
 // 물 위로 얼굴을 내민 마스코트와 고무오리 (홈 히어로, 호흡법)
-const MASCOT = (cls = '') => `<svg class="sw ch mascot ${cls}" viewBox="0 0 200 130" style="--cap:#F26B4F" aria-hidden="true">
+const MASCOT = (cls = '') => `<svg preserveAspectRatio="xMidYMid slice" class="sw ch mascot ${cls}" viewBox="0 0 200 130" style="--cap:#F26B4F" aria-hidden="true">
   ${BACK}
   <g transform="translate(40 98)"><g class="duck">
     <ellipse cx="0" cy="0" rx="17" ry="10" class="yel"/><circle cx="10" cy="-12" r="8" class="yel"/>
@@ -497,15 +519,18 @@ function crumbs(c, trail) {
   return { html, ld };
 }
 
-function renderSection(c, s) {
+function renderSection(c, s, a = {}) {
   const lead = s.lead ? `<p class="lead">${s.lead}</p>` : '';
   switch (s.type) {
     case 'text':
       return `<section class="blk"><h2>${s.h}</h2>${s.paras.map((p) => `<p>${fill(p)}</p>`).join('')}</section>`;
     case 'list':
       return `<section class="blk"><h2>${s.h}</h2>${lead}<ul class="bullets">${s.items.map((i) => `<li>${fill(i)}</li>`).join('')}</ul></section>`;
-    case 'steps':
-      return `<section class="blk"><h2>${s.h}</h2>${lead}<ol class="steps">${s.items.map((i) => `<li><b>${i.t}</b><span>${i.d}</span></li>`).join('')}</ol></section>`;
+    case 'steps': {
+      const poses = s.figs && POSES[a.key]?.[s.figs];
+      if (!poses) return `<section class="blk"><h2>${s.h}</h2>${lead}<ol class="steps">${s.items.map((i) => `<li><b>${i.t}</b><span>${i.d}</span></li>`).join('')}</ol></section>`;
+      return `<section class="blk"><h2>${s.h}</h2>${lead}<ol class="steps figs">${s.items.map((i, n) => `<li><div><b>${i.t}</b><span>${i.d}</span></div><figure class="pose" style="background:var(--${STROKE_BG[a.key]})">${poseSvg(a.key, poses[n])}</figure></li>`).join('')}</ol></section>`;
+    }
     case 'table':
       return `<section class="blk"><h2>${s.h}</h2>${lead}<div class="table-wrap"><table><thead><tr>${s.head.map((h) => `<th scope="col">${h}</th>`).join('')}</tr></thead><tbody>${s.rows.map((r) => `<tr>${r.map((d, i) => (i === 0 ? `<th scope="row">${d}</th>` : `<td>${d}</td>`)).join('')}</tr>`).join('')}</tbody></table></div></section>`;
     case 'mistakes':
@@ -577,11 +602,20 @@ function articlePage(c, a) {
   need(a.related.length >= 3, `${where}: related ${a.related.length}개 (최소 3개)`);
   for (const r of a.related) need(art(c.lang, r), `${where}: related '${r}' 글 없음`);
   if (!SWIMMERS[a.key] && a.key !== 'breathing') need(a.thumb && ICON_PATHS[a.thumb.icon], `${where}: thumb 아이콘 없음`);
-  if (a.cat === 'strokes') need(c.cats.strokes.groups[a.group], `${where}: 영법 묶음(group) 없음`);
+  if (c.cats[a.cat].groups) need(c.cats[a.cat].groups[a.group], `${where}: 묶음(group) 없음`);
+  for (const s of a.sections.filter((x) => x.figs)) {
+    const poses = POSES[a.key]?.[s.figs];
+    need(poses && poses.length === s.items.length, `${where} > ${s.h}: 동작 그림(${s.figs}) 수가 단계 수와 다름`);
+  }
+  for (const src of a.sources || []) need(/^https:\/\//.test(src.url) && src.t, `${where}: 참고 자료 형식 오류`);
 
   const bc = crumbs(c, [[a.cat, c.cats[a.cat].name], [a.key, a.name]]);
   const cv = cover(a);
   const isPace = a.key === 'pace';
+  const isCal = a.tool === 'calories';
+  const sourcesHtml = a.sources?.length
+    ? `<section class="blk sources"><h2>${esc(c.ui.sources)}</h2><ul>${a.sources.map((x) => `<li><a href="${esc(x.url)}" target="_blank" rel="noopener">${esc(x.t)}</a></li>`).join('')}</ul></section>`
+    : '';
   const main = `<article class="wrap article">
   ${bc.html}
   <header class="art-head">
@@ -590,23 +624,53 @@ function articlePage(c, a) {
     ${a.sub ? `<p class="sub">${esc(a.sub)}</p>` : ''}
     ${updatedLine(c)}
   </header>
-  ${isPace ? paceForm(c) : `<div class="art-cover live" style="background:var(--${cv.bg})">${cv.svg}</div>`}
+  ${isPace ? paceForm(c) : isCal ? calForm(a) : `<div class="art-cover live" style="background:var(--${cv.bg})">${cv.svg}</div>`}
   <div class="art-body">
     ${a.cat === 'store' ? `<aside class="note disclosure">${esc(c.ui.disclosure)}</aside>` : ''}
     <div class="intro">${a.intro.map((t) => `<p>${t}</p>`).join('')}</div>
-    ${a.sections.map((s) => renderSection(c, s)).join('\n    ')}
+    ${a.sections.map((s) => renderSection(c, s, a)).join('\n    ')}
+    ${sourcesHtml}
   </div>
 </article>
 ${relatedBlock(c, a.related)}`;
 
   const ld = [
-    { '@context': 'https://schema.org', '@type': 'Article', headline: stripTags(a.h1), description: a.description, inLanguage: c.lang, dateModified: config.CONTENT_UPDATED, mainEntityOfPage: abs(href(c.lang, a.key)), publisher: { '@type': 'Organization', name: c.siteName } },
+    { '@context': 'https://schema.org', '@type': 'Article', headline: stripTags(a.h1), description: a.description, inLanguage: c.lang, dateModified: config.CONTENT_UPDATED, mainEntityOfPage: abs(href(c.lang, a.key)), publisher: { '@type': 'Organization', name: c.siteName }, ...(a.sources?.length ? { citation: a.sources.map((x) => x.url) } : {}) },
     bc.ld,
     ...faqLd(a.sections),
   ];
+  if (isCal) ld.push({ '@context': 'https://schema.org', '@type': 'WebApplication', name: a.toolText.result, url: abs(href(c.lang, a.key)), applicationCategory: 'HealthApplication', operatingSystem: 'Any', inLanguage: c.lang, isAccessibleForFree: true, offers: { '@type': 'Offer', price: '0', priceCurrency: c.lang === 'ko' ? 'KRW' : 'USD' } });
   if (isPace) ld[0] = { '@context': 'https://schema.org', '@type': 'WebApplication', name: a.name, url: abs(href(c.lang, 'pace')), description: a.description, applicationCategory: 'SportsApplication', operatingSystem: 'Any', inLanguage: c.lang, isAccessibleForFree: true, offers: { '@type': 'Offer', price: '0', priceCurrency: c.lang === 'ko' ? 'KRW' : 'USD' } };
 
-  return layout(c, { key: a.key, cat: a.cat, path: href(c.lang, a.key), title: a.title, description: a.description, main, ld, scripts: isPace ? paceScript(c) : '' });
+  return layout(c, { key: a.key, cat: a.cat, path: href(c.lang, a.key), title: a.title, description: a.description, main, ld, scripts: isPace ? paceScript(c) : isCal ? calScript(a) : '' });
+}
+
+function calForm(a) {
+  const t = a.toolText;
+  return `<form class="calc big" id="cal-form" novalidate onsubmit="return false">
+    <div class="fields three">
+      <label>${esc(t.weight)}<input name="w" inputmode="decimal" value="60"></label>
+      <label>${esc(t.minutes)}<input name="m" inputmode="numeric" value="30"></label>
+      <label>${esc(t.stroke)}<select name="s">${a.toolOptions.map(([label, met], i) => `<option value="${met}"${i === 0 ? ' selected' : ''}>${esc(label)}</option>`).join('')}</select></label>
+    </div>
+    <output id="cal-out" aria-live="polite"></output>
+    <p class="calc-note">${esc(t.note)}</p>
+  </form>`;
+}
+
+function calScript(a) {
+  return `<script>
+(() => {
+  const f = document.getElementById('cal-form'), out = document.getElementById('cal-out');
+  const label = ${JSON.stringify(a.toolText.result)};
+  const run = () => {
+    const w = parseFloat(f.w.value), m = parseFloat(f.m.value), met = parseFloat(f.s.value);
+    if (!(w > 0) || !(m > 0)) { out.innerHTML = ''; return; }
+    out.innerHTML = '<span><small>' + label + '</small><b>' + Math.round(met * w * m / 60) + ' kcal</b></span>';
+  };
+  f.addEventListener('input', run); run();
+})();
+</script>`;
 }
 
 function paceForm(c) {
@@ -669,6 +733,10 @@ function hubPage(c, cat) {
   </section>
   ${group('survival')}
   ${group('skills')}`;
+  } else if (h.groups) {
+    const G = h.groups;
+    body = `<nav class="grp-nav">${Object.keys(G).map((g) => `<a class="pill ghost" href="#${g}">${esc(G[g].name)}</a>`).join('')}</nav>
+  ${Object.keys(G).map((g) => `<section class="grp" id="${g}"><div class="grp-head"><h2>${esc(G[g].name)}</h2><p>${G[g].lead}</p></div><div class="mag">${list.filter((a) => a.group === g).map((a) => postCard(c, a, { heading: 'h3' })).join('')}</div></section>`).join('\n  ')}`;
   } else {
     body = `${cat === 'store' ? `<aside class="note disclosure">${esc(c.ui.disclosure)}</aside>` : ''}
   <div class="mag">${list.map((a) => postCard(c, a, { heading: 'h2' })).join('')}</div>`;
@@ -762,14 +830,32 @@ function homePage(c) {
       <span class="face back"><span class="ans">${esc(x.a)}</span><span class="exp">${esc(x.exp)}</span></span>
     </span></button>`).join('')}</div>
     <form class="calc" id="calc" onsubmit="return false">
-      <span class="calc-label">${esc(h.calc.label)}</span>
-      <h3>${esc(h.calc.h)}</h3>
-      <div class="fields">
-        <label>${esc(h.calc.distance)}<input id="cd" inputmode="numeric" value="50"></label>
-        <label>${esc(h.calc.time)}<input id="ct" inputmode="numeric" value="1:10"></label>
+      <div class="calc-top">
+        <span class="calc-label">${esc(h.calc.label)}</span>
+        <div class="ctabs" role="tablist">
+          <button type="button" role="tab" aria-selected="true" data-t="pace">${esc(h.calc.tabPace)}</button>
+          <button type="button" role="tab" aria-selected="false" data-t="cal">${esc(h.calc.tabCal)}</button>
+        </div>
       </div>
-      <div class="result" id="cr">2:20<small>/100m</small></div>
-      <a href="${href(l, 'pace')}">${esc(h.calc.link)} →</a>
+      <div class="cpanel" data-p="pace">
+        <h3>${esc(h.calc.h)}</h3>
+        <div class="fields">
+          <label>${esc(h.calc.distance)}<input id="cd" inputmode="numeric" value="50"></label>
+          <label>${esc(h.calc.time)}<input id="ct" inputmode="numeric" value="1:10"></label>
+        </div>
+        <div class="result" id="cr">2:20<small>/100m</small></div>
+        <a href="${href(l, 'pace')}">${esc(h.calc.link)} →</a>
+      </div>
+      <div class="cpanel" data-p="cal" hidden>
+        <h3>${esc(h.calc.calH)}</h3>
+        <div class="fields">
+          <label>${esc(h.calc.weight)}<input id="kw" inputmode="decimal" value="60"></label>
+          <label>${esc(h.calc.minutes)}<input id="km" inputmode="numeric" value="30"></label>
+          <label class="full">${esc(h.calc.stroke)}<select id="ks">${art(l, 'calories').toolOptions.map(([label, met], i) => `<option value="${met}"${i === 0 ? ' selected' : ''}>${esc(label)}</option>`).join('')}</select></label>
+        </div>
+        <div class="result" id="kr">174<small>kcal</small></div>
+        <a href="${href(l, 'calories')}">${esc(h.calc.calLink)} →</a>
+      </div>
     </form>
   </div>
 </section>
@@ -838,6 +924,15 @@ function homePage(c) {
     $('cr').innerHTML = Math.floor(x / 60) + ':' + String(x % 60).padStart(2, '0') + '<small>/100m</small>';
   };
   $('cd').oninput = $('ct').oninput = calc; calc();
+  const kcal = () => {
+    const w = parseFloat($('kw').value), m = parseFloat($('km').value), met = parseFloat($('ks').value);
+    $('kr').innerHTML = (w > 0 && m > 0 ? Math.round(met * w * m / 60) : '–') + '<small>kcal</small>';
+  };
+  $('kw').oninput = $('km').oninput = $('ks').onchange = kcal; kcal();
+  document.querySelectorAll('.ctabs button').forEach((b) => b.addEventListener('click', () => {
+    document.querySelectorAll('.ctabs button').forEach((x) => x.setAttribute('aria-selected', String(x === b)));
+    document.querySelectorAll('.cpanel').forEach((p) => { p.hidden = p.dataset.p !== b.dataset.t; });
+  }));
 
   $('tabs').addEventListener('click', (e) => {
     const b = e.target.closest('button'); if (!b) return;

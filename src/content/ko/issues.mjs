@@ -2,6 +2,7 @@
 export default [
   {
     key: 'chlorine',
+    sources: [{ t: 'CDC, Chloramines and Pool Operation', url: 'https://www.cdc.gov/healthy-swimming/toolkit/chloramines-and-pool-operation.html' }, { t: 'CDC, Preventing Eye Irritation from Pool Chemicals', url: 'https://www.cdc.gov/healthy-swimming/prevention/preventing-eye-irritation-from-pool-chemicals.html' }],
     name: '수영장 락스 냄새, 정말 염소 때문일까',
     tag: '칼럼',
     card: '독한 수영장 냄새의 정체와 피부·머릿결을 지키는 관리법.',
@@ -381,6 +382,7 @@ export default [
 
   {
     key: 'masters',
+    sources: [{ t: 'World Aquatics, Competition Regulations', url: 'https://www.worldaquatics.com/rules/competition-regulations' }],
     name: '마스터즈 수영 대회, 나가 볼까',
     tag: '칼럼',
     card: '성인 동호인을 위한 수영 대회. 처음 나갈 때 알아 둘 것.',

@@ -2,6 +2,7 @@
 export default [
   {
     key: 'goggles',
+    group: 'basics',
     name: 'How to Choose Swim Goggles',
     tag: 'Gear',
     card: 'Mirrored versus clear lenses, gaskets, and how to find a pair that does not leak.',
@@ -23,6 +24,13 @@ export default [
           ['Smoke or tinted', 'Cuts some glare', 'Bright indoor pools, cloudy outdoor days'],
           ['Mirrored', 'Reflects strong light', 'Outdoor pools, open water, racing'],
           ['Photochromic', 'Darkens with more light', 'Swimmers who switch between indoors and outdoors'],
+        ],
+      },
+      {
+        type: 'text', h: 'Why so many lesson swimmers wear mirrored goggles',
+        paras: [
+          'At swim lessons you will notice plenty of mirrored goggles. The reflective coating hides your eyes, which takes the awkwardness out of eye contact with the coach or the next swimmer, and many people simply like the look.',
+          'Mirrored lenses are a little darker than clear ones, though. At a dimly lit indoor pool, start with clear or a light mirror and switch later if you like.',
         ],
       },
       {
@@ -72,6 +80,7 @@ export default [
 
   {
     key: 'lane-etiquette',
+    group: 'safety',
     name: 'Lap Lane Etiquette: 7 Rules',
     tag: 'Etiquette',
     card: 'Which way to swim, where to rest and how to pass, all in one place.',
@@ -126,10 +135,15 @@ export default [
 
   {
     key: 'calories',
+    group: 'health',
+    sources: [{ t: 'Compendium of Physical Activities', url: 'https://pacompendium.com/' }],
     name: 'Calories Burned Swimming, by Stroke',
     tag: 'Health',
     card: 'Why thirty minutes of freestyle and breaststroke burn different amounts.',
     thumb: { bg: 'rose', icon: 'heart' },
+    tool: 'calories',
+    toolText: { weight: 'Body weight (kg)', minutes: 'Swim time (minutes)', stroke: 'Stroke and effort', result: 'Estimated calories burned', note: 'An estimate based on adult averages. Individual results vary.' },
+    toolOptions: [['Freestyle · light', 5.8], ['Freestyle · fast', 9.8], ['Backstroke · recreational', 4.8], ['Breaststroke · recreational', 5.3], ['Breaststroke · training', 10.3], ['Butterfly', 13.8], ['Treading water', 3.5]],
     title: 'Calories Burned Swimming | 30 Minutes of Freestyle, Breaststroke & Butterfly',
     description: 'How to estimate calories burned swimming with MET values, and a comparison of 30 minutes of freestyle, backstroke, breaststroke and butterfly for a 60 kg adult.',
     h1: 'Calories Burned Swimming: How Much Each Stroke Uses',
@@ -159,6 +173,17 @@ export default [
         ],
       },
       {
+        type: 'table', h: 'Compared with other exercise (30 minutes, 60 kg)',
+        lead: 'Using the same method, here is how swimming compares with walking, cycling and running.',
+        head: ['Activity', 'MET', 'Calories in 30 min'],
+        rows: [
+          ['Brisk walking (about 3.5 mph)', '4.3', 'about 129 kcal'],
+          ['Cycling (moderate pace)', '8.0', 'about 240 kcal'],
+          ['Running (about 6 mph)', '9.8', 'about 294 kcal'],
+          ['Fast freestyle', '9.8', 'about 294 kcal'],
+        ],
+      },
+      {
         type: 'list', h: 'Why the same time burns different amounts',
         items: [
           'Effort makes the biggest difference. Easy freestyle and breathless freestyle differ by almost double.',
@@ -183,6 +208,7 @@ export default [
 
   {
     key: 'beginner-plan',
+    group: 'training',
     name: '4-Week Beginner Swim Plan',
     tag: 'Training',
     card: 'Three sessions a week, from getting comfortable to 100 m nonstop.',
@@ -234,6 +260,7 @@ export default [
 
   {
     key: 'cramp',
+    group: 'safety',
     name: 'What to Do If You Cramp While Swimming',
     tag: 'Safety',
     card: 'The calm, step-by-step way to release a calf cramp in the water.',
@@ -254,6 +281,13 @@ export default [
           { t: 'Stretch the muscle', d: 'For a calf cramp, slowly pull your toes toward your shin.' },
           { t: 'Ask for help', d: 'If you cannot move easily, raise a hand to alert the lifeguard.' },
           { t: 'Rest out of the water', d: 'Once it releases, rest on deck rather than jumping straight back in.' },
+        ],
+      },
+      {
+        type: 'text', h: 'If you are in deep water',
+        paras: [
+          'Where you cannot touch the bottom, take a big breath, put your face in and curl into a ball so your back floats at the surface. In this position you can grab the toes of the cramped leg and pull them toward you to stretch the muscle without sinking.',
+          'When you need air, lift just your head to breathe, then return to the same position. Once the cramp releases, back float to settle your breathing and move slowly to the edge.',
         ],
       },
       {
@@ -292,6 +326,7 @@ export default [
 
   {
     key: 'water-in-ear',
+    group: 'health',
     name: 'How to Get Water Out of Your Ear',
     tag: 'Health',
     card: 'Skip the cotton swab. The safe order for clearing water from your ear.',
@@ -349,6 +384,7 @@ export default [
 
   {
     key: 'glossary',
+    group: 'basics',
     name: 'Swimming Glossary',
     tag: 'Basics',
     card: 'Streamline, pull buoy, interval, flip turn and more words you hear at the pool.',
@@ -417,6 +453,7 @@ export default [
   },
   {
     key: 'stretching',
+    group: 'health',
     name: 'Stretching Before and After Swimming',
     tag: 'Health',
     card: 'Warm up before you get in, and ease off slowly when you get out.',
@@ -472,6 +509,7 @@ export default [
 
   {
     key: 'interval-training',
+    group: 'training',
     name: 'How to Build a Swim Workout',
     tag: 'Training',
     card: 'Warm-up, main set, cool-down. Build a 30-minute session with intervals.',
@@ -530,6 +568,7 @@ export default [
 
   {
     key: 'shoulder-pain',
+    group: 'health',
     name: 'Why Swimming Hurts Your Shoulder',
     tag: 'Health',
     card: 'Common causes of swimmer’s shoulder and what to check in your stroke.',
@@ -585,6 +624,7 @@ export default [
 
   {
     key: 'pool-types',
+    group: 'basics',
     name: 'Types of Swimming Pools',
     tag: 'Basics',
     card: '25 m or 50 m, indoor or outdoor, saltwater or not: what is the difference?',
@@ -642,6 +682,8 @@ export default [
 
   {
     key: 'open-water',
+    group: 'safety',
+    sources: [{ t: 'CDC, Preventing Drowning', url: 'https://www.cdc.gov/drowning/prevention/index.html' }],
     name: 'Open Water vs Pool Swimming',
     tag: 'Safety',
     card: 'No walls, no lane ropes. What to know before swimming in the sea or a lake.',

@@ -15,6 +15,7 @@ npm run indexnow  # 사이트맵 URL을 IndexNow + 네이버에 전송
 - `src/content/ko.mjs`, `en.mjs` — 메뉴·홈·영법 글·소개/문의/개인정보. 두 언어의 페이지 키가 같아야 빌드된다(hreflang 대칭)
 - `src/content/{ko,en}/knowledge.mjs`, `issues.mjs`, `store.mjs` — 수영지식·수영이슈·스토어 글. 새 글은 여기에 객체를 추가하면 메뉴 페이지, 홈, 푸터, 사이트맵에 자동으로 들어간다
 - 스토어 글의 `picks[].url`에 쿠팡 파트너스 링크를 넣으면 버튼이 나타난다 (비어 있으면 숨김)
+- 글 객체의 선택 필드: `sources: [{ t, url }]` → 글 아래 "참고 자료"와 Article JSON-LD citation, `tool: 'calories'` + `toolText`/`toolOptions` → 칼로리 계산기, steps 섹션의 `figs: 'arm' | 'kick'` → 단계별 동작 그림 (각도는 build.mjs의 `POSES`)
 - `mockups/` — 디자인 시안 (배포에 포함되지 않음)
 - `src/build.mjs` — 레이아웃·검사·사이트맵·robots·ads.txt 생성
 - `src/worker.js` — trailing slash 301, 도메인 이전 301, 메뉴 개편 전 옛 주소 301

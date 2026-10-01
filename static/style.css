@@ -251,10 +251,9 @@ button { font: inherit; color: inherit; cursor: pointer; }
 .art-head h1 { font-family: var(--serif); font-weight: 300; font-size: clamp(2rem, 5vw, 3.1rem); line-height: 1.25; letter-spacing: -.01em; margin: 12px 0 10px; }
 .art-head .sub { margin: 0; color: var(--ink-soft); }
 .meta { color: var(--ink-soft); font-size: .82rem; margin: 6px 0 0; }
-.art-cover { max-width: 880px; margin: 0 auto; aspect-ratio: 16 / 7; border-radius: 28px; display: grid; place-items: center; overflow: hidden; }
+.art-cover { max-width: var(--text); margin: 0 auto; aspect-ratio: 16 / 9; border-radius: 28px; display: grid; place-items: center; overflow: hidden; }
 .art-cover .icon { width: 26%; }
-.art-cover svg:not(.icon) { height: 100%; width: auto; }
-.art-cover .mascot { height: 86%; }
+.art-cover svg:not(.icon) { height: 100%; width: 100%; display: block; }
 .art-body { max-width: var(--text); margin: 0 auto; }
 .intro { font-size: 1.08rem; margin: 40px 0 8px; }
 .intro p:first-child::first-letter { font-family: var(--serif); }
@@ -421,3 +420,32 @@ tbody tr:last-child > * { border-bottom: 0; }
 .sc .row { flex-wrap: wrap; row-gap: 4px; }
 .grp .strokes.grid4 { grid-template-columns: repeat(auto-fit, minmax(200px, 1fr)); }
 @media (max-width: 720px) { .grp .strokes.grid4 { grid-template-columns: 1fr; } }
+
+/* ---------- 단계별 동작 그림 ---------- */
+.ch.still * { animation: none !important; }
+.ch.still .drop { opacity: 0; }
+.steps.figs li { display: grid; grid-template-columns: 1fr 150px; gap: 16px; align-items: center; padding-top: 12px; padding-bottom: 12px; }
+.steps.figs li > div { display: flex; flex-direction: column; }
+.steps .pose { margin: 0; border-radius: 12px; aspect-ratio: 4 / 3; overflow: hidden; }
+.steps .pose svg { width: 100%; height: 100%; display: block; }
+@media (max-width: 720px) { .steps.figs li { grid-template-columns: 1fr 104px; gap: 12px; } }
+
+/* ---------- 참고 자료, 계산기 ---------- */
+.sources ul { margin: 0; padding-left: 1.2em; font-size: .9rem; color: var(--ink-soft); }
+.sources li + li { margin-top: 4px; }
+.sources a { color: var(--ink-soft); text-underline-offset: 3px; }
+.sources a:hover { color: var(--ink); }
+.calc select { font: inherit; font-size: 1rem; color: var(--ink); background: var(--paper); border: 0; border-radius: 12px; padding: 12px 14px; width: 100%; }
+.calc-note { margin: 0; font-size: .8rem; color: var(--ink-soft); }
+.steps.figs li::before { top: 50%; transform: translateY(-50%); }
+
+/* 메인 미니 계산기 탭 */
+.calc-top { display: flex; justify-content: space-between; align-items: center; gap: 12px; flex-wrap: wrap; }
+.ctabs { display: inline-flex; background: rgba(255,255,255,.55); border-radius: 999px; padding: 3px; }
+.ctabs button { border: 0; background: transparent; border-radius: 999px; padding: 6px 14px; font-size: .85rem; font-weight: 600; color: var(--ink-soft); }
+.ctabs button[aria-selected="true"] { background: var(--ink); color: var(--cream); }
+.cpanel { display: flex; flex-direction: column; gap: 14px; }
+.calc .fields .full { grid-column: 1 / -1; }
+/* 묶음 안 카드는 한 줄을 꽉 채운다 (묶음당 3~4편) */
+.grp .mag { grid-template-columns: repeat(auto-fit, minmax(230px, 1fr)); }
+@media (max-width: 720px) { .grp .mag { grid-template-columns: 1fr; } }

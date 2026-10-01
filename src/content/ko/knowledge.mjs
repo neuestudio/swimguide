@@ -2,6 +2,7 @@
 export default [
   {
     key: 'goggles',
+    group: 'basics',
     name: '초보자 수경 고르는 법',
     tag: '장비',
     card: '미러와 클리어 렌즈 차이부터 물이 새지 않는 수경 고르는 요령까지.',
@@ -23,6 +24,13 @@ export default [
           ['스모크·컬러', '빛을 조금 줄여 눈부심 완화', '조명이 밝은 실내, 야외 흐린 날'],
           ['미러', '반사 코팅으로 강한 빛 차단', '야외 수영장, 바다, 대회'],
           ['변색', '빛의 양에 따라 색이 변함', '실내와 야외를 오가는 경우'],
+        ],
+      },
+      {
+        type: 'text', h: '강습반에서 미러 수경을 많이 쓰는 이유',
+        paras: [
+          '수영 강습에 가 보면 미러 수경을 쓴 사람이 많습니다. 반사 코팅 덕분에 눈이 드러나지 않아 강사나 옆 사람과 눈이 마주치는 어색함이 줄고, 디자인이 멋있다는 이유도 큽니다.',
+          '다만 미러 렌즈는 클리어보다 시야가 조금 어둡습니다. 조명이 어두운 실내 수영장이라면 처음에는 클리어나 연한 미러를 고르고, 익숙해진 뒤에 바꿔도 늦지 않습니다.',
         ],
       },
       {
@@ -72,6 +80,7 @@ export default [
 
   {
     key: 'lane-etiquette',
+    group: 'safety',
     name: '자유수영 레인 에티켓 7가지',
     tag: '에티켓',
     card: '어느 쪽으로 돌아야 하는지, 추월은 언제 하는지 한 번에 정리했어요.',
@@ -126,10 +135,15 @@ export default [
 
   {
     key: 'calories',
+    group: 'health',
+    sources: [{ t: 'Compendium of Physical Activities (신체 활동별 에너지 소비량)', url: 'https://pacompendium.com/' }],
     name: '수영 30분 칼로리, 영법마다 얼마나 다를까',
     tag: '건강',
     card: '자유형과 평영, 같은 시간을 해도 소모 칼로리가 달라지는 이유.',
     thumb: { bg: 'rose', icon: 'heart' },
+    tool: 'calories',
+    toolText: { weight: '체중 (kg)', minutes: '수영 시간 (분)', stroke: '영법과 강도', result: '예상 소모 칼로리', note: '성인 평균을 바탕으로 한 추정치이며 개인차가 있습니다.' },
+    toolOptions: [['자유형 · 가볍게', 5.8], ['자유형 · 빠르게', 9.8], ['배영 · 여유롭게', 4.8], ['평영 · 여유롭게', 5.3], ['평영 · 훈련 강도', 10.3], ['접영', 13.8], ['제자리 헤엄', 3.5]],
     title: '수영 칼로리 계산 | 30분 자유형·평영·접영 소모 칼로리 비교',
     description: '수영 소모 칼로리를 계산하는 방법과 자유형, 배영, 평영, 접영의 30분 소모 칼로리를 체중 60kg 기준으로 비교했습니다. 강도에 따라 달라지는 이유도 설명합니다.',
     h1: '수영 칼로리: 영법별로 얼마나 다를까',
@@ -159,6 +173,17 @@ export default [
         ],
       },
       {
+        type: 'table', h: '다른 운동과 비교 (30분, 체중 60kg)',
+        lead: '같은 계산 방법으로 걷기, 자전거, 달리기와 비교하면 아래와 같습니다.',
+        head: ['운동', 'MET', '30분 칼로리'],
+        rows: [
+          ['빠르게 걷기 (시속 약 5.6km)', '4.3', '약 129kcal'],
+          ['자전거 (보통 속도)', '8.0', '약 240kcal'],
+          ['달리기 (시속 약 9.7km)', '9.8', '약 294kcal'],
+          ['자유형 빠르게', '9.8', '약 294kcal'],
+        ],
+      },
+      {
         type: 'list', h: '같은 시간을 해도 칼로리가 다른 이유',
         items: [
           '강도가 가장 큰 차이를 만듭니다. 같은 자유형이라도 천천히 할 때와 숨이 찰 만큼 할 때는 거의 두 배 차이가 납니다.',
@@ -183,6 +208,7 @@ export default [
 
   {
     key: 'beginner-plan',
+    group: 'training',
     name: '초보 수영 4주 훈련표',
     tag: '훈련',
     card: '주 3회, 물 적응부터 100m 연속 수영까지 4주 계획.',
@@ -234,6 +260,8 @@ export default [
 
   {
     key: 'cramp',
+    group: 'safety',
+    sources: [{ t: '하이닥, 물속에서 쥐 났을 때 어떻게 대처할까', url: 'https://news.hidoc.co.kr/news/articleView.html?idxno=32898' }],
     name: '수영하다 쥐 났을 때 대처법',
     tag: '안전',
     card: '물속에서 종아리에 쥐가 났을 때 당황하지 않고 푸는 순서.',
@@ -254,6 +282,13 @@ export default [
           { t: '근육 늘리기', d: '종아리에 쥐가 났다면 발끝을 몸 쪽으로 천천히 당겨 근육을 늘립니다.' },
           { t: '도움 요청', d: '혼자 움직이기 어렵다면 손을 들어 안전요원에게 알립니다.' },
           { t: '물 밖에서 쉬기', d: '풀린 뒤에도 바로 다시 수영하지 말고 물 밖에서 충분히 쉽니다.' },
+        ],
+      },
+      {
+        type: 'text', h: '발이 닿지 않는 깊은 물이라면',
+        paras: [
+          '바닥에 발이 닿지 않는 곳에서는 숨을 크게 들이쉬고 얼굴을 물에 넣은 채 몸을 둥글게 웅크려 등이 수면에 뜨게 합니다. 이 자세에서 쥐가 난 다리의 발끝을 손으로 잡아 몸 쪽으로 당기면 몸이 가라앉지 않은 채로 근육을 늘릴 수 있습니다.',
+          '숨이 차면 고개만 들어 숨을 쉬고 다시 같은 자세로 돌아갑니다. 쥐가 풀리면 누워 뜨기로 호흡을 고른 뒤 천천히 가장자리로 이동합니다.',
         ],
       },
       {
@@ -292,6 +327,8 @@ export default [
 
   {
     key: 'water-in-ear',
+    group: 'health',
+    sources: [{ t: '코메디닷컴, 귀에 들어간 물 빼내는 요령 4가지', url: 'https://kormedi.com/2736989/' }, { t: '세브란스, 귀에 들어간 물 빼는 방법 (영상)', url: 'https://www.youtube.com/watch?v=-Bbo7GkhFzo' }],
     name: '귀에 물 들어갔을 때 빼는 법',
     tag: '건강',
     card: '면봉 대신 이렇게. 귀에 들어간 물을 안전하게 빼는 순서.',
@@ -349,6 +386,7 @@ export default [
 
   {
     key: 'glossary',
+    group: 'basics',
     name: '수영 용어 사전',
     tag: '기초',
     card: '음파, 풀부이, 인터벌, 플립턴까지 강습에서 자주 듣는 말.',
@@ -417,6 +455,7 @@ export default [
   },
   {
     key: 'stretching',
+    group: 'health',
     name: '수영 전후 스트레칭',
     tag: '건강',
     card: '입수 전에는 몸을 데우고, 나와서는 천천히 풀어 주세요.',
@@ -472,6 +511,7 @@ export default [
 
   {
     key: 'interval-training',
+    group: 'training',
     name: '수영 훈련 세트 짜는 법',
     tag: '훈련',
     card: '워밍업, 본 세트, 정리 운동. 인터벌로 30분 훈련 만들기.',
@@ -530,6 +570,7 @@ export default [
 
   {
     key: 'shoulder-pain',
+    group: 'health',
     name: '수영 어깨 통증, 왜 생길까',
     tag: '건강',
     card: '수영 어깨 통증의 흔한 원인과 자세에서 확인할 것들.',
@@ -585,6 +626,7 @@ export default [
 
   {
     key: 'pool-types',
+    group: 'basics',
     name: '수영장 종류 알아보기',
     tag: '기초',
     card: '25m와 50m, 실내와 야외, 해수 수영장까지 무엇이 다를까.',
@@ -642,6 +684,8 @@ export default [
 
   {
     key: 'open-water',
+    group: 'safety',
+    sources: [{ t: 'CDC, Preventing Drowning', url: 'https://www.cdc.gov/drowning/prevention/index.html' }],
     name: '바다 수영, 수영장과 무엇이 다를까',
     tag: '안전',
     card: '벽도 레인도 없는 물. 바다·호수 수영 전에 알아야 할 것.',

@@ -2,6 +2,7 @@
 export default [
   {
     key: 'chlorine',
+    sources: [{ t: 'CDC, Chloramines and Pool Operation', url: 'https://www.cdc.gov/healthy-swimming/toolkit/chloramines-and-pool-operation.html' }, { t: 'CDC, Preventing Eye Irritation from Pool Chemicals', url: 'https://www.cdc.gov/healthy-swimming/prevention/preventing-eye-irritation-from-pool-chemicals.html' }],
     name: 'Is That Pool Smell Really Chlorine?',
     tag: 'Column',
     card: 'What the strong pool smell really is, and how to protect skin and hair.',
@@ -381,6 +382,7 @@ export default [
 
   {
     key: 'masters',
+    sources: [{ t: 'World Aquatics, Competition Regulations', url: 'https://www.worldaquatics.com/rules/competition-regulations' }],
     name: 'Should You Try a Masters Swim Meet?',
     tag: 'Column',
     card: 'Swim meets for adults. What to know before your first one.',
