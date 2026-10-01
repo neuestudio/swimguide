@@ -805,12 +805,15 @@ function homePage(c) {
       <div class="label" id="qlabel">${esc(h.quiz.preview)}</div>
       <h3 id="qtitle">?</h3>
       <p id="qdesc">${esc(h.quiz.previewText)}</p>
+      <div class="qmatch" id="qmatch" hidden><span class="qsub">${esc(h.quiz.matchLabel)}</span><div id="qbars"></div></div>
+      <div class="qpath" id="qpath" hidden><span class="qsub">${esc(h.quiz.pathLabel)}</span><ol id="qlist"></ol></div>
       <div class="acts" id="qacts" hidden>
         <a class="btn ink" id="qlink" href="${href(l, 'strokes')}">${esc(h.quiz.go)}</a>
         <button class="btn line" id="qshare" type="button">${esc(h.quiz.share)}</button>
         <button class="btn line" id="qretry" type="button">${esc(h.quiz.retry)}</button>
       </div>
     </div>
+    <template id="qarts">${Object.keys(h.quiz.results).map((k) => `<div data-k="${k}">${cover(art(l, k)).svg}</div>`).join('')}</template>
   </div>
 </section>
 
@@ -871,10 +874,19 @@ function homePage(c) {
   <div class="mag" id="mag">${mag.map((a) => postCard(c, a)).join('')}</div>
 </section>`;
 
+  const R = h.quiz.results;
+  for (const [k, r] of Object.entries(R)) {
+    need(art(l, k), `[${l}] quiz result '${k}' 글 없음`);
+    for (const p of r.path) need(art(l, p), `[${l}] quiz result '${k}' path '${p}' 글 없음`);
+  }
+  need(h.quiz.questions.length >= h.quiz.count, `[${l}] quiz 질문 수가 ${h.quiz.count}개보다 적음`);
+  for (const q of h.quiz.questions) for (const [, sc] of q.o) for (const k of Object.keys(sc)) need(R[k], `[${l}] quiz '${q.q}' 결과 키 '${k}' 없음`);
   const data = {
     tips: h.tips,
     q: h.quiz,
-    href: Object.fromEntries(strokes.map((a) => [a.key, href(l, a.key)])),
+    href: Object.fromEntries(Object.keys(R).map((k) => [k, href(l, k)])),
+    name: Object.fromEntries(Object.keys(R).map((k) => [k, art(l, k).name])),
+    path: Object.fromEntries(Object.entries(R).map(([k, r]) => [k, r.path.map((p) => [art(l, p).name, href(l, p)])])),
   };
   const script = `<script>
 (() => {
@@ -882,22 +894,29 @@ function homePage(c) {
   const $ = (id) => document.getElementById(id);
   $('tip').textContent = D.tips[Math.floor(Date.now() / 864e5) % D.tips.length];
 
-  const Q = D.q.questions; let step = 0, score = {};
+  const pick = () => D.q.questions.map((q) => [Math.random(), q]).sort((a, b) => a[0] - b[0]).slice(0, D.q.count).map((x) => x[1]);
+  let Q = pick(), step = 0, score = {};
+  const esc = (t) => String(t).replace(/[&<>"]/g, (c) => ({ '&': '&amp;', '<': '&lt;', '>': '&gt;', '"': '&quot;' })[c]);
   const renderQ = () => {
     $('qprog').innerHTML = Q.map((_, i) => '<i class="' + (i <= step ? 'on' : '') + '"></i>').join('');
     $('qtext').textContent = 'Q' + (step + 1) + '. ' + Q[step].q;
-    $('qopts').innerHTML = Q[step].o.map((o, i) => '<button class="opt" type="button" data-i="' + i + '"></button>').join('');
-    $('qopts').querySelectorAll('.opt').forEach((b, i) => { b.textContent = Q[step].o[i][0]; });
+    $('qopts').innerHTML = Q[step].o.map((o, i) => '<button class="opt" type="button" data-i="' + i + '">' + esc(o[0]) + '</button>').join('');
   };
   const show = () => {
-    const key = Object.entries(score).sort((a, b) => b[1] - a[1])[0][0];
+    const ranked = Object.entries(score).map(([k, v]) => [k, v, Math.random()]).sort((a, b) => b[1] - a[1] || a[2] - b[2]);
+    const key = ranked[0][0], total = ranked.reduce((n, x) => n + x[1], 0);
     const r = D.q.results[key];
-    $('qart').innerHTML = document.querySelector('.sc[data-key="' + key + '"] svg').outerHTML;
+    $('qart').innerHTML = $('qarts').content.querySelector('[data-k="' + key + '"]').innerHTML;
     $('qlabel').textContent = D.q.resultLabel;
     $('qtitle').textContent = D.q.resultTitle.replace('{name}', r.t);
     $('qdesc').textContent = r.d;
+    $('qbars').innerHTML = ranked.slice(0, 3).map(([k, v]) => {
+      const pct = Math.round(v / total * 100);
+      return '<div class="qbar"><span>' + esc(D.name[k]) + '</span><i><b style="width:' + pct + '%"></b></i><em>' + pct + '%</em></div>';
+    }).join('');
+    $('qlist').innerHTML = D.path[key].map(([n, u]) => '<li><a href="' + u + '">' + esc(n) + ' →</a></li>').join('');
     $('qlink').href = D.href[key];
-    $('qacts').hidden = false;
+    $('qmatch').hidden = $('qpath').hidden = $('qacts').hidden = false;
     $('qtext').textContent = D.q.done;
     $('qopts').innerHTML = '';
     $('qprog').innerHTML = Q.map(() => '<i class="on"></i>').join('');
@@ -907,7 +926,7 @@ function homePage(c) {
     for (const [k, v] of Object.entries(Q[step].o[b.dataset.i][1])) score[k] = (score[k] || 0) + v;
     step++; step < Q.length ? renderQ() : show();
   });
-  $('qretry').onclick = () => { step = 0; score = {}; $('qacts').hidden = true; $('qart').innerHTML = ''; $('qtitle').textContent = '?'; $('qlabel').textContent = D.q.preview; $('qdesc').textContent = D.q.previewText; renderQ(); };
+  $('qretry').onclick = () => { Q = pick(); step = 0; score = {}; $('qacts').hidden = $('qmatch').hidden = $('qpath').hidden = true; $('qart').innerHTML = ''; $('qtitle').textContent = '?'; $('qlabel').textContent = D.q.preview; $('qdesc').textContent = D.q.previewText; renderQ(); };
   $('qshare').onclick = async () => {
     const text = $('qtitle').textContent + ' ' + D.q.shareText;
     const url = location.origin + location.pathname + '#quiz';
