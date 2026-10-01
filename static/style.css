@@ -392,7 +392,7 @@ tbody tr:last-child > * { border-bottom: 0; }
 .ebarm { animation: ebarm 2.4s ease-in-out infinite; }
 .ebarm.b { animation-delay: -.08s; }
 .dive { animation: dive 1.6s ease-in-out infinite alternate; }
-.flip { animation: windmill 1.8s linear infinite; }
+.tumble { animation: windmill 1.8s linear infinite; }
 .dolphin { animation: kick .45s ease-in-out infinite alternate; }
 .bob { animation: bobhead 1.2s ease-in-out infinite alternate; }
 .bob.n1 { animation-delay: -.3s; } .bob.n2 { animation-delay: -.6s; } .bob.n3 { animation-delay: -.9s; }

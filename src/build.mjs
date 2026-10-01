@@ -253,7 +253,7 @@ Object.assign(SWIMMERS, {
     <path d="M179 112 v26 M172 125 h14" stroke-width="4"/>
     <path class="turnarrow" d="M104 104 A30 30 0 1 1 112 146"/>
     <circle class="bubble" cx="118" cy="100" r="3"/><circle class="bubble b" cx="124" cy="92" r="2.2"/>
-    <g transform="translate(134 124)"><g class="flip">
+    <g transform="translate(134 124)"><g class="tumble">
       <circle class="suitball" cx="0" cy="4" r="15"/>
       ${limb('M-8 10 Q8 20 16 6')}${foot(18, 3, -70)}
       <circle class="skin" cx="5" cy="-11" r="11"/>
