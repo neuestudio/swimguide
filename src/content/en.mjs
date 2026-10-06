@@ -9,7 +9,8 @@ export default {
   lang: 'en',
   locale: 'en_US',
   langName: 'English',
-  siteName: 'Swim Stroke Guide',
+  siteName: 'Umpa Swim',
+  logoSub: 'swim guide',
 
   ui: {
     home: 'Home',
@@ -27,7 +28,7 @@ export default {
     disclaimer: 'The content on this site is general swimming information. For precise technique correction, we recommend working with a qualified swim coach.',
     disclosure: 'This page may contain affiliate links. If you buy through them, the site may earn a small commission at no extra cost to you.',
     buy: 'View product',
-    footBig: 'One more lap,<br><em>just keep swimming.</em>',
+    footBig: 'Every day,<br><em>one more lap.</em>',
     notFoundTitle: 'Page not found',
     notFoundBody: 'This page may have moved or been removed. Pick a section below to keep going.',
     notFoundHome: 'Go to home',
@@ -86,9 +87,9 @@ export default {
   },
 
   home: {
-    title: 'Swim Stroke Guide | Learn Freestyle, Backstroke, Breaststroke & Butterfly',
+    title: 'Umpa Swim | Learn Freestyle, Backstroke, Breaststroke & Butterfly',
     description: 'Free beginner lessons for all four swimming strokes plus goggle buying tips, lane etiquette, calories by stroke and a 4-week training plan for new swimmers.',
-    kicker: 'Swim Stroke Guide',
+    kicker: 'Umpa Swim',
     h1: 'The <em>easiest</em> way<br>to feel at home in water',
     sub: [
       'From your first day at the pool to swimming 100 m without stopping, we take it one step at a time. Stroke technique, breathing, pool etiquette and gear advice all live in one place. Start with the quiz to find the stroke that suits you.',
@@ -645,11 +646,11 @@ export default {
   },
 
   about: {
-    title: 'About | Swim Stroke Guide',
-    description: 'Swim Stroke Guide is a free resource that explains freestyle, backstroke, breaststroke and butterfly technique and drills for people learning to swim.',
-    h1: 'About Swim Stroke Guide',
+    title: 'About | Umpa Swim',
+    description: 'Umpa Swim is a free resource that explains freestyle, backstroke, breaststroke and butterfly technique and drills for people learning to swim.',
+    h1: 'About Umpa Swim',
     body: [
-      { h: 'What this site is', paras: ['Swim Stroke Guide is a free information site for people learning to swim or refining their technique on their own. It gathers the basic movements, common mistakes and drills for freestyle, backstroke, breaststroke and butterfly in one place.'] },
+      { h: 'What this site is', paras: ['Umpa Swim is a free information site for people learning to swim or refining their technique on their own. It gathers the basic movements, common mistakes and drills for freestyle, backstroke, breaststroke and butterfly in one place. The name comes from "eum-pa", the Korean cue for the bubble breathing every beginner learns first.'] },
       { h: 'How we write', paras: ['Every page is based on the way swim lessons commonly explain each skill and on publicly available coaching material. We split each skill into small steps so you can fix one thing at a time, and we focus on the problems beginners actually run into.', 'If something is wrong or could be explained better, please tell us through the contact page. We will review it, update the page and refresh the last updated date.'] },
       { h: 'Disclaimer', paras: ['The information here is general learning material and does not replace in-person coaching. If you have pain or a health condition, talk to a professional before you start swimming.'] },
       { h: 'Advertising and affiliates', paras: ['Google AdSense ads may appear on this site to support its operation. You can read about advertising cookies in our privacy policy.', 'Store guides may include affiliate links, and the site may earn a commission on purchases made through them. We always explain the buying criteria first, whether or not a link is included.'] },
@@ -657,8 +658,8 @@ export default {
   },
 
   contact: {
-    title: 'Contact | Swim Stroke Guide',
-    description: 'How to contact Swim Stroke Guide about corrections, content suggestions, partnerships and advertising.',
+    title: 'Contact | Umpa Swim',
+    description: 'How to contact Umpa Swim about corrections, content suggestions, partnerships and advertising.',
     h1: 'Contact',
     body: [
       { h: 'Email', paras: ['Please send your message to the address below. We aim to reply within three business days.', 'Email: {{EMAIL}}.'] },
@@ -668,11 +669,11 @@ export default {
   },
 
   privacy: {
-    title: 'Privacy Policy | Swim Stroke Guide',
-    description: 'What personal information Swim Stroke Guide processes, why, how long it is kept, how cookies and Google AdSense ads work, and your rights.',
+    title: 'Privacy Policy | Umpa Swim',
+    description: 'What personal information Umpa Swim processes, why, how long it is kept, how cookies and Google AdSense ads work, and your rights.',
     h1: 'Privacy Policy',
     body: [
-      { h: '1. Overview', paras: ['Swim Stroke Guide (the "Site") respects your privacy and follows applicable data protection laws. This policy explains what information the Site processes and how.'] },
+      { h: '1. Overview', paras: ['Umpa Swim (the "Site") respects your privacy and follows applicable data protection laws. This policy explains what information the Site processes and how.'] },
       { h: '2. Information we process', list: ['The Site has no user accounts and does not ask you to enter your name or contact details.', 'If you email us, we receive your email address and the content of your message so we can reply.', 'When you visit, our hosting provider Cloudflare may automatically process logs such as IP address, browser details and access time for security and service operation.'] },
       { h: '3. Purpose and retention', paras: ['Email addresses and messages are used only to reply and are deleted one year after the conversation ends. Where the law requires longer retention, we keep them for that period.'] },
       { h: '4. Cookies and advertising', paras: ['The Site may display ads through Google AdSense. Third-party vendors, including Google, use cookies to serve ads based on your prior visits to this site or other websites.', 'You can learn more in <a href="https://policies.google.com/technologies/ads" rel="nofollow">Google’s advertising policies</a>. You can opt out of personalized advertising in <a href="https://adssettings.google.com/" rel="nofollow">Ads Settings</a>, and you can block cookies in your browser settings.', 'If you click an affiliate link in a store guide, the retailer may use cookies to attribute the purchase. The Site does not collect this information itself, and it is handled under the retailer’s privacy policy.'] },

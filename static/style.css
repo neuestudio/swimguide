@@ -12,8 +12,8 @@
   --sage: #D1E1D4;
   --rose: #F3C6BE;
   --oat: #E9E1CC;
-  --serif: "MaruBuri", "Instrument Serif", serif;
-  --latin: "Instrument Serif", "MaruBuri", serif;
+  --serif: "MaruBuri", "Fraunces", serif;
+  --latin: "Fraunces", "MaruBuri", serif;
   --sans: "Pretendard", -apple-system, BlinkMacSystemFont, "Apple SD Gothic Neo", sans-serif;
   --r: 22px;
   --max: 1120px;
@@ -479,3 +479,11 @@ tbody tr:last-child > * { border-bottom: 0; }
 .quiz-result .art { aspect-ratio: 4 / 3; border-radius: 16px; overflow: hidden; background: rgba(255,255,255,.35); margin-bottom: 12px; }
 .quiz-result .art:empty { display: none; }
 .quiz-result .art svg { width: 100%; height: 100%; display: block; }
+
+/* 헤더 워드마크: 음파 + umpa swim */
+.logo .lk { display: inline-flex; align-items: baseline; gap: 6px; }
+.logo .lk b { font-family: var(--serif); font-weight: 700; font-size: 1.3rem; letter-spacing: -.02em; }
+.logo .lk i { font-family: var(--latin); font-size: 1rem; color: var(--ink-soft); font-weight: 400; }
+
+/* 영문 서체 Fraunces는 Light(300) 한 굵기만 불러온다. 가짜 굵게(합성)를 막는다 */
+html { font-synthesis-weight: none; }

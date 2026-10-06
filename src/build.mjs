@@ -420,7 +420,7 @@ function header(c, key, cat) {
   return `<a class="skip" href="#main">${esc(c.ui.skip)}</a>
 <header class="hd">
   <div class="wrap">
-    <a class="logo" href="${href(l, 'home')}">${LOGO}${esc(c.siteName)}</a>
+    <a class="logo" href="${href(l, 'home')}" aria-label="${esc(c.siteName)}">${LOGO}<span class="lk"><b>${esc(c.lang === 'ko' ? c.siteName : 'Umpa')}</b><i>${esc(c.logoSub)}</i></span></a>
     <nav class="nav" aria-label="menu">${nav}</nav>
     <div class="hd-right">
       <a class="pill ghost" href="${href(o, key || 'home')}" hreflang="${o}" lang="${o}">${esc(c.ui.langSwitch)}</a>
@@ -487,7 +487,7 @@ function layout(c, { key, cat, title, description, main, ld = [], noindex = fals
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/orioncactus/pretendard@v1.3.9/dist/web/static/pretendard.min.css">
   <link rel="stylesheet" href="https://hangeul.pstatic.net/hangeul_static/css/maru-buri.css">
-  <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Instrument+Serif:ital@0;1&display=swap">
+  <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Fraunces:ital,opsz,wght@0,9..144,300;1,9..144,300&display=swap">
   <link rel="stylesheet" href="/style.css">
   ${adsense}
   ${ld.map(jsonLd).join('\n  ')}
